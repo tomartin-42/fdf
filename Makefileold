@@ -18,7 +18,7 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 MINLBXL  = $(addprefix $(MLXL_DIR), libmlx.a)
-# MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.dylib)
+MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.dylib)
 
 # mlx library Mac
 # MLXM_INC	= -I ./minilibx_mms
@@ -30,18 +30,18 @@ MINLBXL  = $(addprefix $(MLXL_DIR), libmlx.a)
 # MLXL_INC	= -I ./minilibx_opengl
 # LXL_LNK		= -L ./minilibx_opengl -l mlx -framework OpenGL -framework AppKit
 
-LNK  = -L $(LIBFT_DIR) -lft -L $(MLXL_DIR) \
+LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) \
 	   -lmlx -framework OpenGL -framework AppKit
 
-all: obj $(LIBFT) $(MINLBXL) $(NAME)
+all: obj $(LIBFT) $(MINLBXM) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	@gcc $(FLAGS) -I $(MLXL_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+	@gcc $(FLAGS) -I $(MLXM_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
-$(MINLBXL):
+$(MINLBXM):
 	@make -C $(MLXM_DIR)
 
 $(NAME): $(OBJ)
@@ -50,7 +50,7 @@ $(NAME): $(OBJ)
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
-	@make -C $(MLXL_DIR) clean
+	@make -C $(MLXM_DIR) clean
 
 re: fclean all
 
