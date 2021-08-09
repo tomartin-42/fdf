@@ -18,11 +18,13 @@ ifeq ($(detected_OS),Darwin)
 	MLXM_DIR = ./minilibx_opengl
 	MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.a) 
 	MLXFAGS = -lmlx -framework OpenGL -framework AppKit
+	LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) 
 endif
 ifeq ($(detected_OS),Linux) 
 	MLXM_DIR = ./mlxlinux/ 
 	MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.a) 
 	MLXFAGS = -Lmlx_linux -lmlx_linux -L/usr/lib -Imlxlinux -lXext -lX11 -lm -lz 
+	LNK  = -L $(LIBFT_DIR) -I/usr/include -I$(MLXM_DIR) -03 
 endif
 
 # Paths
@@ -30,7 +32,7 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
-LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) 
+# LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) 
 
 all: obj $(LIBFT) $(MINLBXM) $(NAME)
 
