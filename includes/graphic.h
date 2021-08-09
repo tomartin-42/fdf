@@ -8,7 +8,7 @@
 # include <math.h>
 # include <time.h>
 
-# include "../minilibx_mms/mlx.h"
+# include "../minilibx_opengl/mlx.h"
 # include "libft.h"
 
 #endif

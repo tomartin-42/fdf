@@ -14,8 +14,6 @@ LIBFT_DIR = ./libft/
 # Detect an add flag depend OS
 detected_OS := $(shell uname -s)
 
-#	echo "$(detected_OS)"
-
 ifeq ($(detected_OS),Darwin) 
 	MLXM_DIR = ./minilibx_opengl/ 
 	MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.a) 
@@ -32,9 +30,9 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
-LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) $(MLXFLAGS)\
+LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) $(MLXFLAGS)
 
-all: obj $(LIBFT) $(MINLBXL) $(NAME)
+all: obj $(LIBFT) $(MINLBXM) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
@@ -42,7 +40,7 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@gcc $(FLAGS) -I $(MLXM_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
-$(MINLBXL):
+$(MINLBXM):
 	@make -C $(MLXM_DIR)
 
 $(NAME): $(OBJ)
