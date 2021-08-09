@@ -9,6 +9,6 @@
 # include <time.h>
 
 # include "../minilibx_opengl/mlx.h"
-# include "libft.h"
+# include "../libft/libft.h"
 
 #endif

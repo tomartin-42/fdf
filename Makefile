@@ -15,7 +15,7 @@ LIBFT_DIR = ./libft/
 detected_OS := $(shell uname -s)
 
 ifeq ($(detected_OS),Darwin) 
-	MLXM_DIR = ./minilibx_opengl/ 
+	MLXM_DIR = ./minilibx_opengl
 	MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.a) 
 	MLXFAGS = -lmlx -framework OpenGL -framework AppKit
 endif
@@ -30,7 +30,7 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
-LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) $(MLXFLAGS)
+LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) 
 
 all: obj $(LIBFT) $(MINLBXM) $(NAME)
 
@@ -44,7 +44,7 @@ $(MINLBXM):
 	@make -C $(MLXM_DIR)
 
 $(NAME): $(OBJ)
-	gcc $(OBJ) $(LNK) -lm -o $(NAME)
+	gcc $(OBJ) $(LNK) $(MLXFAGS) -lm -o $(NAME)
 
 fclean: clean
 	@rm -f $(NAME)
