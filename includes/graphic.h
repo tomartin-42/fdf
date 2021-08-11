@@ -13,10 +13,15 @@
 
 typedef struct s_map{
 	int	**xy;
+	int	x;
+	int	y;
 }	t_map;
 
-void	check_correct_argc(int argc, char **argv);
+int	check_correct_argc(int argc, char **argv);
+void	check_fd_map(int fd);
 
 void	execut_error (void);
+
+void	get_x(t_map *map, char *line);
 
 #endif
