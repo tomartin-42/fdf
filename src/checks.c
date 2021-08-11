@@ -2,9 +2,15 @@
 
 void check_correct_argc(int argc, char **argv)
 {
-	if (argc != 1)
+	if (argc != 2)
+	{
+		printf ("HOLA1\n");
 		execut_error ();
-	if (ft_strlen(argv[argc]) == 0)
+	}
+	if (ft_strlen(argv[1]) == 0)
+	{
+		printf ("HOLA2\n");
 		execut_error (); 
+	}
 }
 

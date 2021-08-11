@@ -1,12 +1,12 @@
 #include "graphic.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	//t_map	map;
 	void	*mlx;
 	void	*mlx_win;
 	
-//	check_correct_argc(argc, argv);
+	check_correct_argc(argc, argv);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1600, 1200, "Hello world!");
 	mlx_pixel_put(mlx, mlx_win, 80, 80, 0x00FFFFFF);
