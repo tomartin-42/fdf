@@ -8,7 +8,15 @@
 # include <math.h>
 # include <time.h>
 
-# include "../minilibx_opengl/mlx.h"
-# include "../libft/libft.h"
+# include "mlx.h"
+# include "libft.h"
+
+typedef struct s_map{
+	int	**xy;
+}	t_map;
+
+void	check_correct_argc(int argc, char **argv);
+
+void	execut_error (void);
 
 #endif

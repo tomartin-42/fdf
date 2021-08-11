@@ -1,58 +1,65 @@
+# Name of the program
 NAME = fdf
-FLAGS = -Wall -Werror -Wextra
-CC = gcc
 
-SRC_FILES = main.c
-OBJ_FILES = $(SRC_FILES:.c=.o)
+# Compiling flags
+FLAGS = -Wall -Wextra -Werror -g
 
 # Folders
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 INC_DIR = ./includes/
 LIBFT_DIR = ./libft/
+MINLBX_DIR = ./minilibx/
 
-# Detect an add flag depend OS
-detected_OS := $(shell uname -s)
-
-ifeq ($(detected_OS),Darwin) 
-	MLXM_DIR = ./minilibx_opengl
-	MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.a) 
-	MLXFAGS = -lmlx -framework OpenGL -framework AppKit
-	LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) 
-endif
-ifeq ($(detected_OS),Linux) 
-	MLXM_DIR = ./mlxlinux/ 
-	MINLBXM  = $(addprefix $(MLXM_DIR), libmlx.a) 
-	MLXFAGS = -Lmlx_linux -lmlx_linux -L/usr/lib -Imlxlinux -lXext -lX11 -lm -lz 
-	LNK  = -L $(LIBFT_DIR) -I/usr/include -I$(MLXM_DIR) -03 
-endif
+# Source files and object files
+SRC_FILES = main.c checks.c errors.c
+OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # Paths
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+MINLBX  = $(addprefix $(MINLBX_DIR), libmlx.a)
 
-# LNK  = -L $(LIBFT_DIR) -lft -L $(MLXM_DIR) 
+# Libft and Minilibx linkers
+LNK  = -L $(LIBFT_DIR) -lft -L $(MINLBX_DIR) \
+	   -lmlx -framework OpenGL -framework AppKit
 
-all: obj $(LIBFT) $(MINLBXM) $(NAME)
+# all rule
+all: obj $(LIBFT) $(MINLBX) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	@gcc $(FLAGS) -I $(MLXM_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+	@gcc $(FLAGS) -I $(MINLBX_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
-$(MINLBXM):
-	@make -C $(MLXM_DIR)
-
+$(MINLBX):
+	@make -C $(MINLBX_DIR)
+ 
+# Compiling
 $(NAME): $(OBJ)
-	gcc $(OBJ) $(LNK) $(MLXFAGS) -lm -o $(NAME)
+	@echo "Compiling... Wait a sec."
+	@gcc $(OBJ) $(LNK) -lm -o $(NAME)
+	@echo "$(NAME) generated!".
 
+bonus: all
+
+# clean rule
+clean:
+	@rm -Rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MINLBX_DIR) clean
+	@echo "Objects removed!"
+	
+# fclean rule
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
-	@make -C $(MLXM_DIR) clean
-
-re: fclean all
-
-.PHONY: all clean fclean re
+	@echo "$(NAME) removed!"
+ 
+ # re rule
+ re: fclean all
+ 
+ # phony
+ .PHONY: all clean fclean re
