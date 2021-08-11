@@ -2,7 +2,7 @@
 
 void	execut_error (void)
 {
-	perror("Error: ");
+	perror("Error");
 	exit(1);
 }
   

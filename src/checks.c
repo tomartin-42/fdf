@@ -1,16 +1,14 @@
 #include "../includes/graphic.h"
 
-void check_correct_argc(int argc, char **argv)
+void	check_correct_argc(int argc, char **argv)
 {
+	int	fd;
 	if (argc != 2)
-	{
-		printf ("HOLA1\n");
-		execut_error ();
-	}
+		execut_error();
 	if (ft_strlen(argv[1]) == 0)
-	{
-		printf ("HOLA2\n");
-		execut_error (); 
-	}
+		execut_error(); 
+	fd = open (argv[1], O_RDONLY );
+	if (fd < 1)
+		execut_error();
 }
 
