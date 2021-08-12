@@ -10,6 +10,7 @@ int	main(int argc, char **argv)
 
 	int	i;
 	int	j;
+	int	ini = 300;
 	fd = check_correct_argc(argc, argv);
 	map = check_fd_map(fd);
 	copy_to_map(&map, argv[1]);
@@ -22,9 +23,9 @@ int	main(int argc, char **argv)
 		j = 0;
 		while(j < map.x)
 		{
-			//i = i - j;
-			//j = (j + i) / 2;
-			mlx_pixel_put(mlx, mlx_win, i * 30, j * 30, 0x00FFFFFF);
+			i = j - i;
+			j = (j + i) / 2;
+			mlx_pixel_put(mlx, mlx_win, ini + ( i * 30), ini + (j * 30), 0x00FFFFFF);
 			j++;
 		}
 		i++;

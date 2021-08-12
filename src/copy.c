@@ -22,6 +22,7 @@ void	copy_to_map(t_map *map, char *argv)
 			free (buff_map[j]);
 			j++;
 		}
+		free(buff_map);
 		i++;
 	}
 }
