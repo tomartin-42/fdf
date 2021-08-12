@@ -26,31 +26,44 @@ void	check_fd_map(int fd)
 		i = 0;
 		while (i < ft_strlen(line))
 		{
-			if (!ft_strchr("0123456789 +-\t", line[i]))
+			if (!ft_strchr("0123456789 +-", line[i]))
+				execut_error();
+			if (ft_strchr("+-", line[i])
+			 && (!ft_strchr("0123456789",line[i + 1])))
 				execut_error();
 			i++;
+			get_x(&map, line);
 		}
-		if  (ft_strlen(line) > 0)
-			get_x (&map, line);
 		map.y++;
 	}
-	printf ("[[%d - %d]]\n",map.x, map.y);
+	dimension_map(&map, fd);
 }
 
-void	get_x (t_map *map, char *line)
+void	get_x(t_map *map, char *line)
 {
 	size_t	i;
 
 	i = 0;
-	map->x = 1;
+	map->x = 2;
 	while (i < ft_strlen(line))
 	{
-		if ((line[i] == ' ' || (9 <= line[i] && line[i] <= 13)) && (ft_isalnum(line[i + 1])))
-		{
-			printf("HOLA - %d - %s-\n",map->x, line);
+		if ((line[i] == ' ' || (9 <= line[i] && line[i] <= 13)) 
+		&& (ft_strchr("0123456789+-",line[i + 1])))
 			map->x += 1;
-		}
 		i++;
 	}
 }
+
+void	dimension_map(t_map *map, int fd)
+{
+	int	i;
 	
+	i = 0;
+	map->xy = (int **)malloc((map->x - 1)*sizeof(int*));
+	while (i < map->x)
+	{
+		map->xy[i] = (int *)malloc(map->y*sizeof(int));
+		i++;
+	}
+	close (fd);
+}

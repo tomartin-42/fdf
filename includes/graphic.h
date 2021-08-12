@@ -23,5 +23,7 @@ void	check_fd_map(int fd);
 void	execut_error (void);
 
 void	get_x(t_map *map, char *line);
+void	dimension_map(t_map *map, int fd);
+//void	copy_to_map(t_map *map, int fd);
 
 #endif
