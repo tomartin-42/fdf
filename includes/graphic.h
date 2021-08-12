@@ -18,12 +18,15 @@ typedef struct s_map{
 }	t_map;
 
 int	check_correct_argc(int argc, char **argv);
-void	check_fd_map(int fd);
+t_map	check_fd_map(int fd);
 
 void	execut_error (void);
 
 void	get_x(t_map *map, char *line);
 void	dimension_map(t_map *map, int fd);
-//void	copy_to_map(t_map *map, int fd);
 
+void	copy_to_map(t_map *map, char *argv);
+
+
+void printmap(t_map *map);
 #endif

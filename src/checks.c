@@ -14,7 +14,7 @@ int	check_correct_argc(int argc, char **argv)
 	return (fd);
 }
 
-void	check_fd_map(int fd)
+t_map	check_fd_map(int fd)
 {
 	char	*line;
 	size_t	i;
@@ -37,6 +37,7 @@ void	check_fd_map(int fd)
 		map.y++;
 	}
 	dimension_map(&map, fd);
+	return (map);
 }
 
 void	get_x(t_map *map, char *line)
@@ -59,10 +60,10 @@ void	dimension_map(t_map *map, int fd)
 	int	i;
 	
 	i = 0;
-	map->xy = (int **)malloc((map->x - 1)*sizeof(int*));
+	map->xy = (int **)malloc((map->x)*sizeof(int*));
 	while (i < map->x)
 	{
-		map->xy[i] = (int *)malloc(map->y*sizeof(int));
+		map->xy[i] = (int *)malloc((map->y)*sizeof(int));
 		i++;
 	}
 	close (fd);
