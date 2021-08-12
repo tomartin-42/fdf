@@ -10,7 +10,7 @@ int	main(int argc, char **argv)
 	fd = check_correct_argc(argc, argv);
 	map = check_fd_map(fd);
 	copy_to_map(&map, argv[1]);
-	printmap(&map);
+//	printmap(&map);
 //	mlx = mlx_init();
 //	mlx_win = mlx_new_window(mlx, 1600, 1200, "Hello world!");
 //	mlx_pixel_put(mlx, mlx_win, 80, 80, 0x00FFFFFF);
