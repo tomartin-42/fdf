@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 			//j = j + 300;
 			//j = i - j;
 			//i = (j + i) / 2;
-			mlx_pixel_put(mlx, mlx_win, ini +  (i - j) * 5, ini +  (((j + i)/2) * 5), 0x00FFFFFF);
+			mlx_pixel_put(mlx, mlx_win, ini +  (((i - j) * cos (M_PI / 6)) * 50) , ini +  (((j + i) * sin (M_PI / 6)) * 50), 0x00FFFFFF);
 			j++;
 		}
 		i++;
