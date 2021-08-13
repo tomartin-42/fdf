@@ -32,6 +32,6 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx);
 }
 
-/*void	read_map (char **argv, t_map *map)
+/*void	read_map (char **argv, t_map *map)  
 {
 }*/
