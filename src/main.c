@@ -15,14 +15,15 @@ int	main(int argc, char **argv)
 	fd = check_correct_argc(argc, argv);
 	map = check_fd_map(fd);
 	copy_to_map(&map, argv[1]);
-	printmap(&map);
+	//printmap(&map);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
 	i = 0;
-	while (i < map.x)
+	printf("HOLA\n");
+	while (i < map.y - 1)
 	{
 		j = 0;
-		while(j < map.y)
+		while(j < map.x - 1)
 		{
 			mlx_pixel_put(mlx, mlx_win, ini +  (((i - j) * cos (M_PI / 6)) * 10) , ini +  (((j + i - map.xy[i][j] ) * sin (M_PI / 6)) * 10), 0x00FFFFFF);
 			j++;
