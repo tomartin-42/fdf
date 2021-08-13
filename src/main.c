@@ -7,25 +7,26 @@ int	main(int argc, char **argv)
 	void	*mlx;
 	void	*mlx_win;
 	
-
+	int	ini = 300;
 	int	i;
 	int	j;
-	int	ini = 300;
 	fd = check_correct_argc(argc, argv);
 	map = check_fd_map(fd);
 	copy_to_map(&map, argv[1]);
 //	printmap(&map);
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1600, 1200, "Hello world!");
+	mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
 	i = 0;
-	while (i < map.y)
+	while (i < map.x)
 	{
 		j = 0;
-		while(j < map.x)
+		while(j < map.y)
 		{
-			i = j - i;
-			j = (j + i) / 2;
-			mlx_pixel_put(mlx, mlx_win, ini + ( i * 30), ini + (j * 30), 0x00FFFFFF);
+			//i = i + 300;
+			//j = j + 300;
+			//j = i - j;
+			//i = (j + i) / 2;
+			mlx_pixel_put(mlx, mlx_win, ini +  (i - j) * 5, ini +  (((j + i)/2) * 5), 0x00FFFFFF);
 			j++;
 		}
 		i++;

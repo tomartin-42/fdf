@@ -16,13 +16,14 @@ void	copy_to_map(t_map *map, char *argv)
 		//get_next_line (fd, &line);
 		buff_map = ft_split (line, ' ');
 		j = 0;
-		while (buff_map[j])
+		while (buff_map[j] != NULL)
 		{	
+	printf ("HOLA %d\n ", j);
 			map->xy[i][j] = ft_atoi (buff_map[j]);
-			free (buff_map[j]);
+		//	free (buff_map[j]);
 			j++;
 		}
-		free(buff_map);
+	//	free(buff_map);
 		i++;
 	}
 }

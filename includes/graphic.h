@@ -17,6 +17,9 @@ typedef struct s_map{
 	int	y;
 }	t_map;
 
+# define X_MED 360
+# define Y_MED 640	
+
 int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
