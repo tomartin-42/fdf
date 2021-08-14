@@ -67,5 +67,6 @@ void	dimension_map(t_map *map, int fd)
 		map->xy[i] = (int *)malloc((map->x)*sizeof(int));
 		i++;
 	}
+	map->scale = 0;
 	close (fd);
 }

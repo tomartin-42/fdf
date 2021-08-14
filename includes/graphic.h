@@ -15,6 +15,7 @@ typedef struct s_map{
 	int	**xy;
 	int	x;
 	int	y;
+	int	scale;
 }	t_map;
 
 # define X_MED 360
@@ -29,6 +30,8 @@ void	get_y(t_map *map, char *line);
 void	dimension_map(t_map *map, int fd);
 
 void	copy_to_map(t_map *map, char *argv);
+
+void	calculate_scale(t_map *map);
 
 void	paint_point(t_map *map, void *mlx, void *mlx_win);
 

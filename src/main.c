@@ -15,6 +15,8 @@ int	main(int argc, char **argv)
 	printmap(&map);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1280, 720, argv[1]);
+	calculate_scale(&map);
+	printf("HOLA\n"); 
 	paint_point(&map, mlx, mlx_win); 
 	mlx_loop(mlx);
 }
