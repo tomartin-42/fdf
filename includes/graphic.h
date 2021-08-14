@@ -30,6 +30,7 @@ void	dimension_map(t_map *map, int fd);
 
 void	copy_to_map(t_map *map, char *argv);
 
+void	paint_point(t_map *map, void *mlx, void *mlx_win);
 
 void printmap(t_map *map);
 #endif
