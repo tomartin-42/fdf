@@ -12,9 +12,9 @@
 # include "libft.h"
 
 typedef struct s_map{
-	float	**xy;
-	float	x;
-	float	y;
+	int	**xy;
+	int	x;
+	int	y;
 	int	scale;
 }	t_map;
 
