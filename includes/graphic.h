@@ -12,23 +12,21 @@
 # include "libft.h"
 
 typedef struct s_map{
-	int	**xy;
-	int	x;
-	int	y;
+	float	**xy;
+	float	x;
+	float	y;
 	int	scale;
 }	t_map;
 
 typedef struct s_point{
-	int	x;
-	int	y;
-	int	nx;
-	int	ny;
+	float	x;
+	float	y;
 }	t_point;
 
 typedef struct s_line{
-	int	x;
-	int 	y;
-	int	D;
+	float	x;
+	float	y;
+	float	D;
 }	t_line;
 
 # define X_MED 360
@@ -47,9 +45,10 @@ void	copy_to_map(t_map *map, char *argv);
 void	calculate_scale(t_map *map);
 
 void	paint_point(t_map *map, void *mlx, void *mlx_win);
-void	print_line_low(t_point point, void *mlx, void *mlx_win);
-void	print_line_high(t_point point, void *mlx, void *mlx_win);
+void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win);
+void	print_line_high(t_point point, t_point point2, void *mlx, void *mlx_win);
 t_point	calculate_points(t_map *map, int x, int y);
+void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win);
 
 void printmap(t_map *map);
 #endif
