@@ -8,23 +8,24 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 	t_point	point2;
 
 	i = 0;
-	while (i < map->y)
+	while (i < map->x)
 	{
 		j = 0;
-		while(j < map->x)
+		while(j < map->y)
 		{
+			printf("{{%d - %d -- %d}}\n",i ,j ,map->xy[i][j]);
 			point = calculate_points(map, i, j);
-			if (i < map->y - 1)
+			if (i < map->x - 1)
 			{
 				point2 = calculate_points(map, i + 1, j);
 				draw_line(point, point2, mlx, mlx_win);
 			}
-			if (j < map->x - 1)
+			if (j < map->y - 1)
 			{
 				point2 = calculate_points(map, i, j + 1);
 				draw_line(point, point2, mlx, mlx_win);
 			}
-			mlx_pixel_put(mlx, mlx_win, point.x, point.y, 0x000000FF);
+			mlx_pixel_put(mlx, mlx_win, point.x, point.y, 0x00FF0000);
 			j++;
 		}
 		i++;
@@ -99,14 +100,14 @@ void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win)
 	if (fabsf(point2.y - point.y) < fabsf(point2.x - point.x))
 	{	
 		if (point.x > point2.x)
-			print_line_low(point2, point, mlx, mlx_win, 0x00FF0000);
+			print_line_low(point2, point, mlx, mlx_win, 0x00FFFFFF);
 		else
-			print_line_low(point, point2, mlx, mlx_win, 0x0000FF00);
+			print_line_low(point, point2, mlx, mlx_win, 0x00FFFFFF);
 	}
 	else
 	{
 		if (point.y > point2.y)
-			print_line_high(point2, point, mlx, mlx_win, 0x000000FF);
+			print_line_high(point2, point, mlx, mlx_win, 0x00FFFFFF);
 		else
 		{	
 			print_line_high(point, point2, mlx, mlx_win, 0x00FFFFFF);
@@ -121,10 +122,10 @@ t_point	calculate_points(t_map *map, int x, int y)
 	float	a;
 
 	a = (map->xy[x][y] * sin(M_PI / 6));
-	point.x = (x - y) * cos (M_PI / 6) * map->scale;
-	point.y = ((x + y - a) * sin (M_PI / 6)) * map->scale;
-	point.x = point.x + 650;
-	point.y = point.y + 100;
+	point.y = (x - y) * cos (M_PI / 6) * map->scale;
+	point.x = ((x + y - a) * sin (M_PI / 6)) * map->scale;
+	point.y = point.x + 650;
+	point.x = point.y + 100;
 	return (point);
 } 
 

@@ -20,7 +20,7 @@ t_map	check_fd_map(int fd)
 	size_t	i;
 	t_map	map;
 
-	map.y = 0;
+	map.x = 0;
 	while (get_next_line(fd, &line))
 	{
 		i = 0;
@@ -34,7 +34,7 @@ t_map	check_fd_map(int fd)
 			i++;
 			get_y(&map, line);
 		}
-		map.y++;
+		map.x++;
 	}
 	dimension_map(&map, fd);
 	return (map);
@@ -45,12 +45,12 @@ void	get_y(t_map *map, char *line)
 	size_t	i;
 
 	i = 0;
-	map->x = 1;
+	map->y = 1;
 	while (i < ft_strlen(line))
 	{
 		if ((line[i] == ' ' || (9 <= line[i] && line[i] <= 13)) 
 		&& (ft_strchr("0123456789+-",line[i + 1])))
-			map->x += 1;
+			map->y += 1;
 		i++;
 	}
 }
@@ -60,13 +60,13 @@ void	dimension_map(t_map *map, int fd)
 	int	i;
 	
 	i = 0;
-	printf("**%d - %d**\n",map->x, map->y);
-	map->xy = (int **)malloc((map->y + 1)*sizeof(int*));
-	while (i <= map->y)
+	map->xy = (int **)malloc((map->x)*sizeof(int*));
+	while (i < map->y)
 	{
-		map->xy[i] = (int *)malloc((map->x)*sizeof(int));
+		map->xy[i] = (int *)malloc((map->y)*sizeof(int));
 		i++;
 	}
+	printf("**%d - %d**\n",map->x, map->y);
 	map->scale = 0;
 	close (fd);
 }
