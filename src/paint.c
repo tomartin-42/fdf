@@ -16,17 +16,16 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 			point = calculate_points(map, i, j);
 			if (i < map->y - 1)
 			{
-			//	point2 = calculate_points(map, i + 1, j);
-			//	print_line_low(point, point2, mlx, mlx_win);
+				point2 = calculate_points(map, i + 1, j);
+				draw_line(point, point2, mlx, mlx_win);
 			}
 			if (j < map->x - 1)
 			{
 				point2 = calculate_points(map, i, (j + 1));
-				print_line_low(point2, point, mlx, mlx_win);
+				//print_line_low(point2, point, mlx, mlx_win);
+				draw_line(point, point2, mlx, mlx_win);
 			}
-			//point2 = calculate_points(map, i, j + 1 );
-			//print_line_high(point2, point, mlx, mlx_win);
-			mlx_pixel_put(mlx, mlx_win, point.x, point.y, 0x0000FF00);
+			mlx_pixel_put(mlx, mlx_win, point.x, point.y, 0x00FF0000);
 			j++;
 		}
 		i++;
@@ -96,9 +95,23 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
 	}
 }
 
-/*void	draw_line(t_map *map, t_point point, void *mlx, void *mlx_win)
+void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win)
 {
-}*/
+	if (fabsf(point2.y - point.y) < fabsf(point2.x - point.x))
+	{	
+		if (point.x >= point2.x)
+			print_line_low(point2, point, mlx, mlx_win);
+		else
+			print_line_low(point, point2, mlx, mlx_win);
+	}
+	else
+	{
+		if (point.y >= point2.y)
+			print_line_high(point2, point, mlx, mlx_win);
+		else	
+			print_line_high(point, point2, mlx, mlx_win);
+	}	
+}
 
 t_point	calculate_points(t_map *map, int x, int y)
 {
