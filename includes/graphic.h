@@ -45,8 +45,8 @@ void	copy_to_map(t_map *map, char *argv);
 void	calculate_scale(t_map *map);
 
 void	paint_point(t_map *map, void *mlx, void *mlx_win);
-void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win);
-void	print_line_high(t_point point, t_point point2, void *mlx, void *mlx_win);
+void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win, int color);
+void	print_line_high(t_point point, t_point point2, void *mlx, void *mlx_win, int color);
 t_point	calculate_points(t_map *map, int x, int y);
 void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win);
 
