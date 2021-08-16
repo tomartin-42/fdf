@@ -21,7 +21,7 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 			}
 			if (j < map->x - 1)
 			{
-				point2 = calculate_points(map, i, (j + 1));
+				point2 = calculate_points(map, i, j + 1);
 				draw_line(point, point2, mlx, mlx_win);
 			}
 			mlx_pixel_put(mlx, mlx_win, point.x, point.y, 0x000000FF);
@@ -72,7 +72,7 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win, i
 	dx = point2.x - point.x;
 	dy = point2.y - point.y;
 	xi = 1;
-	if (dy < 0)
+	if (dx < 0)
 	{
 		xi = -1;
 		dx = -dx;
@@ -107,8 +107,11 @@ void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win)
 	{
 		if (point.y > point2.y)
 			print_line_high(point2, point, mlx, mlx_win, 0x000000FF);
-		else	
+		else
+		{	
 			print_line_high(point, point2, mlx, mlx_win, 0x00FFFFFF);
+		
+		}
 	}	
 }
 
@@ -124,3 +127,7 @@ t_point	calculate_points(t_map *map, int x, int y)
 	point.y = point.y + 100;
 	return (point);
 } 
+
+/*void	extra(t_point point, t_point point2, void *mlx, void *mlx_win)
+{
+*/	
