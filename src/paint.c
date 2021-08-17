@@ -121,13 +121,13 @@ t_point	calculate_points(t_map *map, int x, int y)
 	t_point	point;
 	float	a;
 
-	a = (map->xy[x][y] * sin(M_PI / 6));
-	point.y = (x - y) * cos (M_PI / 6) * map->scale;
-	point.x = ((x + y - a) * sin (M_PI / 6)) * map->scale;
-	point.y = point.x + 650;
-	point.x = point.y + 100;
+	a = (map->xy[x][y]) * sin (M_PI / 6) / 4;
+	point.x = (y - x) * cos (M_PI / 6) * map->scale;
+	point.y = ((x + y - a) * sin (M_PI / 6)) * map->scale;
+	point.x = point.x + 650;
+	point.y = point.y + 100;
 	return (point);
-} 
+}
 
 /*void	extra(t_point point, t_point point2, void *mlx, void *mlx_win)
 {
