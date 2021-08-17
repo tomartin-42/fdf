@@ -16,14 +16,19 @@ typedef struct s_map{
 	int	x;
 	int	y;
 	int	scale;
+	int	center_x;
+	int	center_y;
 }	t_map;
 
 typedef struct s_point{
 	float	x;
 	float	y;
+	int	color;
 }	t_point;
 
 typedef struct s_line{
+	float	dx;
+	float	dy;
 	float	x;
 	float	y;
 	float	D;
@@ -43,6 +48,7 @@ void	dimension_map(t_map *map, int fd);
 void	copy_to_map(t_map *map, char *argv);
 
 void	calculate_scale(t_map *map);
+void	center_map(t_map *map);
 
 void	paint_point(t_map *map, void *mlx, void *mlx_win);
 void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win, int color);
