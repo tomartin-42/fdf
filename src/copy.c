@@ -12,13 +12,11 @@ void	copy_to_map(t_map *map, char *argv)
 	i = 0;
 	fd = open (argv, O_RDONLY);
 	while (i < map->x)
-	//while (get_next_line(fd, &line))
 	{
 		get_next_line(fd, &line);
 		buff_map = ft_split (line, ' ');
 		j = 0;
 		while (buff_map[j])
-		//j < map->y)
 		{
 			map->xy[i][j] = ft_atoi (buff_map[j]);
 			free (buff_map[j]);
@@ -35,10 +33,10 @@ void printmap(t_map *map)
 	int	j;
 
 	i = 0;
-	while (i < map->x)
+	while (i < map->x + 1)
 	{
 		j = 0;
-		while (j < map->y)
+		while (j < map->y + 1)
 		{
 			printf ("%-4d",map->xy[i][j]);
 			j++;

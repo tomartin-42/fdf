@@ -61,7 +61,7 @@ void	dimension_map(t_map *map, int fd)
 	
 	i = 0;
 	map->xy = (int **)malloc((map->x)*sizeof(int*));
-	while (i < map->y)
+	while (i < map->x)
 	{
 		map->xy[i] = (int *)malloc((map->y)*sizeof(int));
 		i++;
