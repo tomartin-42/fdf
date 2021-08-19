@@ -48,8 +48,10 @@ void	dimension_map(t_map *map, int fd);
 void	copy_to_map(t_map *map, char *argv);
 
 void	calculate_scale(t_map *map);
-void	center_map(t_map *map);
 t_point	size_points(t_map *map, int x, int y);
+void	calculate_true_scale(t_map *map);
+void	calculate_true_center(t_map *map);
+void	calculate_scale_final(t_map *map);
 
 void	paint_point(t_map *map, void *mlx, void *mlx_win);
 void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win, int color);
