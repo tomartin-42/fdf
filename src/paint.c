@@ -114,12 +114,12 @@ void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win)
 t_point	calculate_points(t_map *map, int x, int y)
 {
 	t_point	point;
-	float	a;
+	float	z;
 
-	a = (map->xy[x][y]) * sin (M_PI / 18);
+	z = (map->xy[x][y]);
 	point.x = (y - x) * cos (M_PI / 6) * map->scale;
-	point.y = ((x + y - a) * sin (M_PI / 6)) * map->scale;
-//	point.x = point.x + map->center_x;
-//	point.y = point.y + map->center_y;
+	point.y = ((x + y - z) * sin (M_PI / 6)) * map->scale;
+	point.x = point.x + 640 - map->scale *(map->y / 2);
+	point.y = point.y + 360 - map->scale *(map->x / 2);
 	return (point);
 }

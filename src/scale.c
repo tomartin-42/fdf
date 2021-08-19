@@ -3,9 +3,10 @@
 //calculate the map scale in funtion of size of this.
 void calculate_scale(t_map *map)
 {
-	float	h;
+	int	h;
 	int	i;
 	int	j;
+	t_point	point;
 
 	i = 0;
 	h = 0;
@@ -14,25 +15,47 @@ void calculate_scale(t_map *map)
 		j = 0;
 		while (j < map-> y)
 		{
-			if (abs(map->xy[i][j]) <= h)
-				h = abs(map->xy[i][j] + j);
-			else if (i > h)
-				h = i;
+			point = size_points(map, i, j);
+			if (fabs(point.y) >= h)
+				h = (int) point.y;
+			else if (fabs(point.x) >= h)
+				h = (int) point.x;
 			j++;
 		}
 		i++;
 	}
-	if ((X_MED) > (h / 2))
-		map->scale = ((X_MED - 10)) / (h / 2);
+	if ( h > (map->y))
+	{
+		printf("H1\n");
+		map->scale = ((Y_MED - 40)) / (h);
+	}
 	else
-		map->scale =  ((Y_MED - 10)) / (h / 2);
+	{
+		printf("H2\n");
+		map->scale =  (X_MED - 80) / (h);
+	}
+	printf("scale = %d %d\n", map->scale, h);
 	center_map(map);
-	printf("%d - %d",map->center_x, map->center_y);	
 }
 
 void	center_map(t_map *map)
 {
-	printf("KKKKKKK\n");
-	map->center_x = map->scale * (X_MED);
-	map->center_y = map->scale * (Y_MED);
+	int	center[2];
+
+	center[0] = map->x / 2 - 640;
+	center[1] = map->y / 2 - 360;
+	map->center_x = (1240 / map->x) * center[0];
+	map->center_y = (700 / map->y) * center[1];
+
+}
+
+t_point	size_points(t_map *map, int x, int y)
+{
+	t_point	point;
+	float	z;
+
+	z = (map->xy[x][y]);
+	point.x = (y - x) * cos (M_PI / 6);
+	point.y = ((x + y - z) * sin (M_PI / 6));
+	return (point);
 }

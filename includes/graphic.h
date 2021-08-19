@@ -34,8 +34,8 @@ typedef struct s_line{
 	float	D;
 }	t_line;
 
-# define X_MED 360
-# define Y_MED 640	
+# define Y_MED 360
+# define X_MED 640	
 
 int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
@@ -49,6 +49,7 @@ void	copy_to_map(t_map *map, char *argv);
 
 void	calculate_scale(t_map *map);
 void	center_map(t_map *map);
+t_point	size_points(t_map *map, int x, int y);
 
 void	paint_point(t_map *map, void *mlx, void *mlx_win);
 void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win, int color);

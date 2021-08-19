@@ -17,7 +17,8 @@ void	copy_to_map(t_map *map, char *argv)
 		get_next_line(fd, &line);
 		buff_map = ft_split (line, ' ');
 		j = 0;
-		while (j < map->y - 1)
+		while (buff_map[j])
+		//j < map->y)
 		{
 			map->xy[i][j] = ft_atoi (buff_map[j]);
 			free (buff_map[j]);
