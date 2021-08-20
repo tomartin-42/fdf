@@ -19,6 +19,7 @@ void	copy_to_map(t_map *map, char *argv)
 		while (buff_map[j])
 		{
 			map->xy[i][j] = ft_atoi (buff_map[j]);
+			map->color[i][j] = copy_colors(buff_map[j]); 
 			free (buff_map[j]);
 			j++;
 		}
@@ -27,21 +28,25 @@ void	copy_to_map(t_map *map, char *argv)
 	}
 }
 
-int	copy_colors(t_map *map, char *string)
+int	copy_colors(char *string)
 {
-	char	**buff_color;
 	int	i;
 	int	color;
 
-	color = 0x00FFFFFF;	
+	color = 0x00FF00FF;	
 	i = 0;
 	while(string[i])
 	{
 		if(string[i] != ',')
 			i++;
 		else
+		{
 			color = exatoi(string, i);
+			//printf ("%X\n", color);
+			break ;
+		}
 	}
+	return (color);
 }
 
 void printmap(t_map *map)
@@ -65,3 +70,28 @@ void printmap(t_map *map)
 	printf ("\n");
 }
 
+int	exatoi(char *hex, int i)
+{
+	int	color;
+   	int	y;
+	int	x;
+	int	j;
+	
+	j = i + 3;
+	color = 0;
+	y = 0;
+	while (hex[i] != '\0')
+		i++;
+	while(i >= j)
+	{
+      		if(hex[i]>='0' && hex[i]<='9')
+         		x = hex[i] - '0';
+      		else
+         		x = hex[i] - 'A' + 10;
+		color = (color * 16) + x;
+		//printf("OOO%dOOOO\n", color);
+		i--;
+	}
+   return (color);
+}
+		

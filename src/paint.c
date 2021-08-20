@@ -49,7 +49,7 @@ void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win)
 	line.x = point.x;
 	while (line.x < point2.x)
 	{
-		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point.color);
+		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
 		if (line.D > 0)
 		{
 			line.y = line.y + yi ;
@@ -78,7 +78,7 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
-		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point.color);
+		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
 		if (line.D > 0)
 		{
 			line.x = line.x + xi;
