@@ -40,6 +40,9 @@ void calculate_scale(t_map *map)
 	calculate_true_center(map);
 	map->scale = 1000;
 	calculate_scale_final(map);
+	if(map->scale < 1)
+		map->scale = 2;
+	printf("%d\n",map->scale);
 //	printf("scale = %d %f\n", map->scale, h);
 }
 
@@ -77,7 +80,6 @@ void	calculate_true_scale(t_map *map)
 		}
 		i++;
 	}
-	printf("**%d**\n", map->scale);
 }
 
 void	calculate_true_center(t_map *map)

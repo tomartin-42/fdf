@@ -11,6 +11,7 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 	while (i < map->x)
 	{
 		j = 0;
+		//	printf("HOLAi %d %d %d %d\n", i, j, map->x, map->y);
 		while(j < map->y)
 		{
 			point = calculate_points(map, i, j);
@@ -24,7 +25,7 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 				point2 = calculate_points(map, i, j + 1);
 				draw_line(point, point2, mlx, mlx_win);
 			}
-		//	mlx_pixel_put(mlx, mlx_win, point.x, point.y, 0x00FF0000);
+			mlx_pixel_put(mlx, mlx_win, point.x, point.y, 0x00FF0000);
 			j++;
 		}
 		i++;

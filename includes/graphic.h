@@ -48,8 +48,7 @@ void	dimension_map(t_map *map, int fd);
 void	init_color(t_map *map);
 
 void	copy_to_map(t_map *map, char *argv);
-int	copy_colors(char *str);
-int	exatoi(char *exa, int i);
+int	get_color(char *str);
 
 void	calculate_scale(t_map *map);
 t_point	size_points(t_map *map, int x, int y);

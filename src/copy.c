@@ -19,34 +19,13 @@ void	copy_to_map(t_map *map, char *argv)
 		while (buff_map[j])
 		{
 			map->xy[i][j] = ft_atoi (buff_map[j]);
-			map->color[i][j] = copy_colors(buff_map[j]); 
+			map->color[i][j] = get_color(buff_map[j]); 
 			free (buff_map[j]);
 			j++;
 		}
 		free(buff_map);
 		i++;
 	}
-}
-
-int	copy_colors(char *string)
-{
-	int	i;
-	int	color;
-
-	color = 0x00FF00FF;	
-	i = 0;
-	while(string[i])
-	{
-		if(string[i] != ',')
-			i++;
-		else
-		{
-			color = exatoi(string, i);
-			//printf ("%X\n", color);
-			break ;
-		}
-	}
-	return (color);
 }
 
 void printmap(t_map *map)
@@ -70,28 +49,54 @@ void printmap(t_map *map)
 	printf ("\n");
 }
 
-int	exatoi(char *hex, int i)
+static int	get_idx(const char *base, char a)
 {
-	int	color;
-   	int	y;
-	int	x;
-	int	j;
-	
-	j = i + 3;
-	color = 0;
-	y = 0;
-	while (hex[i] != '\0')
-		i++;
-	while(i >= j)
+	int	idx;
+	int	out;
+
+	out = -1;
+	idx = 0;
+	while (base[idx])
 	{
-      		if(hex[i]>='0' && hex[i]<='9')
-         		x = hex[i] - '0';
-      		else
-         		x = hex[i] - 'A' + 10;
-		color = (color * 16) + x;
-		//printf("OOO%dOOOO\n", color);
-		i--;
+		if (base[idx] == a)
+			out = idx;
+		idx++;
 	}
-   return (color);
+	return (out);
 }
-		
+
+static char	*get_str_in_lowercase(char **s, int start, size_t len)
+{
+	char	*out;
+	char	*aux;
+
+	aux = ft_substr(*s, start, len + 1);
+	out = aux;
+	while (*aux)
+	{
+		*aux = ft_tolower(*aux);
+		aux++;
+	}
+	return (out);
+}
+
+int	get_color(char *str)
+{
+	int		color;
+	char	*aux;
+	char	*aux_free;
+	int		power;
+
+	while(*str++ != ',')
+	if (*str != ',')
+		return (0xFFFFFF);
+	power = 5;
+	aux = get_str_in_lowercase(&str, 3, 6);
+	aux_free = aux;
+	color = 0;
+	while (*aux)
+		color = color
+			+ (int)(get_idx("0123456789abcdef", *aux++) * pow(16, power--));
+	free(aux_free);
+	return (color);
+}
