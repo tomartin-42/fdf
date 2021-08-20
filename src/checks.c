@@ -14,6 +14,7 @@ int	check_correct_argc(int argc, char **argv)
 	return (fd);
 }
 
+//check correct characters and call other functions
 t_map	check_fd_map(int fd)
 {
 	char	*line;
@@ -40,6 +41,7 @@ t_map	check_fd_map(int fd)
 	return (map);
 }
 
+//calculate numbers per line
 void	get_y(t_map *map, char *line)
 {
 	size_t	i;
@@ -55,18 +57,39 @@ void	get_y(t_map *map, char *line)
 	}
 }
 
+//size matrix
 void	dimension_map(t_map *map, int fd)
 {
 	int	i;
 	
 	i = 0;
 	map->xy = (int **)malloc((map->x)*sizeof(int*));
+	map->color = (int **)malloc((map->x)*sizeof(int*));
 	while (i < map->x)
 	{
 		map->xy[i] = (int *)malloc((map->y)*sizeof(int));
+		map->color[i] = (int *)malloc((map->y)*sizeof(int));
 		i++;
 	}
-	printf("**%d - %d**\n",map->x, map->y);
 	map->scale = 0;
 	close (fd);
 }
+//inicialice matrix colors
+void	init_color(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->x)
+	{
+		j = 0;
+		while (j < map->y)
+		{
+			map->color[i][j] = 0x0000FFFF;
+			j++;
+		}
+		i++;
+	}
+}
+

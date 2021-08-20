@@ -31,7 +31,7 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 	}
 }
 
-void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win, int color)
+void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win)
 {
 	float	yi;
 	t_line	line;
@@ -49,7 +49,7 @@ void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win, int
 	line.x = point.x;
 	while (line.x < point2.x)
 	{
-		mlx_pixel_put(mlx, mlx_win, line.x, line.y, color);
+		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point.color);
 		if (line.D > 0)
 		{
 			line.y = line.y + yi ;
@@ -60,7 +60,7 @@ void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win, int
 		line.x++;
 	}
 }
-void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win, int color)
+void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
 {
 	float	xi;
 	t_line	line;
@@ -78,7 +78,7 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win, i
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
-		mlx_pixel_put(mlx, mlx_win, line.x, line.y, color);
+		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point.color);
 		if (line.D > 0)
 		{
 			line.x = line.x + xi;
@@ -95,17 +95,17 @@ void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win)
 	if (fabsf(point2.y - point.y) < fabsf(point2.x - point.x))
 	{	
 		if (point.x > point2.x)
-			print_line_low(point2, point, mlx, mlx_win, 0x00FFFFFF);
+			print_line_low(point2, point, mlx, mlx_win);
 		else
-			print_line_low(point, point2, mlx, mlx_win, 0x00FFFFFF);
+			print_line_low(point, point2, mlx, mlx_win);
 	}
 	else
 	{
 		if (point.y > point2.y)
-			print_line_high(point2, point, mlx, mlx_win, 0x00FFFFFF);
+			print_line_high(point2, point, mlx, mlx_win);
 		else
 		{	
-			print_line_high(point, point2, mlx, mlx_win, 0x00FFFFFF);
+			print_line_high(point, point2, mlx, mlx_win);
 		
 		}
 	}	
@@ -116,6 +116,7 @@ t_point	calculate_points(t_map *map, int x, int y)
 	t_point	point;
 	float	z;
 
+	point.color = map->color[x][y];
 	z = (map->xy[x][y]);
 	point.x = (y - x) * cos (M_PI / 6) * map->scale;
 	point.y = ((x + y - z) * sin (M_PI / 6)) * map->scale;
