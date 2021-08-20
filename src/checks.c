@@ -27,8 +27,6 @@ t_map	check_fd_map(int fd)
 		i = 0;
 		while (i < ft_strlen(line))
 		{
-			if (!ft_strchr("0123456789 +-", line[i]))
-				execut_error();
 			if (ft_strchr("+-", line[i])
 			 && (!ft_strchr("0123456789",line[i + 1])))
 				execut_error();

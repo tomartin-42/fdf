@@ -27,6 +27,23 @@ void	copy_to_map(t_map *map, char *argv)
 	}
 }
 
+int	copy_colors(t_map *map, char *string)
+{
+	char	**buff_color;
+	int	i;
+	int	color;
+
+	color = 0x00FFFFFF;	
+	i = 0;
+	while(string[i])
+	{
+		if(string[i] != ',')
+			i++;
+		else
+			color = exatoi(string, i);
+	}
+}
+
 void printmap(t_map *map)
 {
 	int	i;
