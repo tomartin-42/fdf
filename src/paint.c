@@ -1,6 +1,6 @@
 #include "graphic.h"
 
-void	paint_point(t_map *map, void *mlx, void *mlx_win)
+void	paint_point(t_map *map, t_data *img)
 {
 	int	i;
 	int	j;
@@ -18,13 +18,13 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 			{
 				if (i + 1 < map->x)
 				point2 = calculate_points(map, i + 1, j);
-				draw_line(point, point2, mlx, mlx_win);
+				draw_line(img, point, point2);
 			}
 			if (j < map->y - 1)
 			{
 				if (j + 1 < map->y)
 				point2 = calculate_points(map, i, j + 1);
-				draw_line(point, point2, mlx, mlx_win);
+				draw_line(img, point, point2);
 			}
 		//	mlx_pixel_put(mlx, mlx_win, point.x, point.y, point.color);
 			j++;
@@ -33,7 +33,7 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 	}
 }
 
-void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win)
+void	print_line_low(t_data *data, t_point point, t_point point2)
 {
 	float	yi;
 	t_line	line;
@@ -51,7 +51,7 @@ void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win)
 	line.x = (int) point.x;
 	while (line.x < point2.x)
 	{
-		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
+		my_mlx_pixel_put(data, line.x, line.y, point2.color);
 		if (line.D > 0)
 		{
 			line.y = line.y + yi ;
@@ -62,7 +62,7 @@ void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win)
 		line.x++;
 	}
 }
-void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
+void	print_line_high(t_data *data, t_point point, t_point point2)
 {
 	float	xi;
 	t_line	line;
@@ -81,7 +81,8 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
 	while (line.y < point2.y)
 	{
 	//	printf ("%f - %f\n", line.y, point.y);
-		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
+	//	mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
+		my_mlx_pixel_put(data, line.x, line.y, point2.color);
 		if (line.D > 0)
 		{
 			line.x = line.x + xi;
@@ -93,24 +94,21 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
 	}
 }
 
-void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win)
+void	draw_line(t_data *data, t_point point, t_point point2)
 {
 	if (fabsf(point2.y - point.y) < fabsf(point2.x - point.x))
 	{	
 		if (point.x > point2.x)
-			print_line_low(point2, point, mlx, mlx_win);
+			print_line_low(data, point2, point);
 		else
-			print_line_low(point, point2, mlx, mlx_win);
+			print_line_low(data, point, point2);
 	}
 	else
 	{
 		if (point.y > point2.y)
-			print_line_high(point2, point, mlx, mlx_win);
+			print_line_high(data, point2, point);
 		else
-		{	
-			print_line_high(point, point2, mlx, mlx_win);
-		
-		}
+			print_line_high(data, point, point2);
 	}	
 }
 
@@ -126,4 +124,12 @@ t_point	calculate_points(t_map *map, int x, int y)
 	point.x = point.x + map->center_x;
 	point.y = point.y + map->center_y;
 	return (point);
+}
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }

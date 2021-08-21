@@ -10,7 +10,14 @@
 
 # include "mlx.h"
 # include "libft.h"
-//# include "../libmlx.dylib"
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
+} 	t_data;
 
 typedef struct s_map{
 	int	**xy;
@@ -57,11 +64,12 @@ void	calculate_true_scale(t_map *map);
 void	calculate_true_center(t_map *map);
 void	calculate_scale_final(t_map *map);
 
-void	paint_point(t_map *map, void *mlx, void *mlx_win);
-void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win);
-void	print_line_high(t_point point, t_point point2, void *mlx, void *mlx_win);
+void	paint_point(t_map *map, t_data *data);
+void	print_line_low(t_data *data, t_point point, t_point point2);
+void	print_line_high(t_data *data, t_point  point, t_point point2);
 t_point	calculate_points(t_map *map, int x, int y);
-void	draw_line(t_point point, t_point point2, void *mlx, void *mlx_win);
+void	draw_line(t_data *data, t_point point, t_point point2);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void printmap(t_map *map);
 #endif

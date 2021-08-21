@@ -19,8 +19,7 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(mlx, 1280, 720);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	calculate_scale(&map);
-	paint_point(&map, &img); 
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	paint_point(&map, mlx, mlx_win); 
 	mlx_loop(mlx);
 }
 
