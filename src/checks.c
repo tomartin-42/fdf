@@ -33,6 +33,7 @@ t_map	check_fd_map(int fd)
 			i++;
 			printf("%d\n",map.x);*/
 			get_y(&map, line);
+	printf("%d\n", map.x);
 	//	}
 		map.x++;
 	}
@@ -49,7 +50,7 @@ void	get_y(t_map *map, char *line)
 	map->y = 0;
 	while (i < ft_strlen(line))
 	{
-		if ((line[i] == ' ') && (ft_strchr("0123456789+-",line[i + 1])))
+		if ((ft_isalnum(line[i])) && (ft_strchr(" ",line[i + 1])))
 			map->y += 1;
 		i++;
 	}
@@ -63,13 +64,13 @@ void	dimension_map(t_map *map, int fd)
 	i = 0;
 	map->xy = (int **)malloc((map->x)*sizeof(int*));
 	map->color = (int **)malloc((map->x)*sizeof(int*));
-	while (i < map->y)
+	while (i < map->x)
 	{
 		map->xy[i] = (int *)malloc((map->y)*sizeof(int));
 		map->color[i] = (int *)malloc((map->y)*sizeof(int));
 		i++;
 	}
-	map->scale = 0;
+	map->scale = 2;
 	close (fd);
 }
 //inicialice matrix colors

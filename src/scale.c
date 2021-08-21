@@ -41,7 +41,7 @@ void calculate_scale(t_map *map)
 	map->scale = 1000;
 	calculate_scale_final(map);
 	if(map->scale < 1)
-		map->scale = 3;
+		map->scale = 1;
 	printf("%d\n",map->scale);
 //	printf("scale = %d %f\n", map->scale, h);
 }

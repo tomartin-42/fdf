@@ -16,13 +16,13 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 			point = calculate_points(map, i, j);
 			if (i < map->x)
 			{
-			//	if (i + 1 < map->x)
+				if (i + 1 < map->x)
 				point2 = calculate_points(map, i + 1, j);
 				draw_line(point, point2, mlx, mlx_win);
 			}
 			if (j < map->y - 1)
 			{
-			//	if (j + 1 < map->y)
+				if (j + 1 < map->y)
 				point2 = calculate_points(map, i, j + 1);
 				draw_line(point, point2, mlx, mlx_win);
 			}

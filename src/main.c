@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 	printf("%d . %d\n", map.x, map.y);
 	copy_to_map(&map, argv[1]);
 //	init_color(&map);
-	printmap(&map);
+//	printmap(&map);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1280, 720, argv[1]);
 	calculate_scale(&map);
