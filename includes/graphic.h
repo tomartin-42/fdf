@@ -10,6 +10,7 @@
 
 # include "mlx.h"
 # include "libft.h"
+//# include "../libmlx.dylib"
 
 typedef struct s_map{
 	int	**xy;
