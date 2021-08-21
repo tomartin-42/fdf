@@ -11,13 +11,14 @@ void	copy_to_map(t_map *map, char *argv)
 
 	i = 0;
 	fd = open (argv, O_RDONLY);
-	while (i < map->x)
+	while (i < map->x) 
 	{
 		get_next_line(fd, &line);
 		buff_map = ft_split (line, ' ');
 		j = 0;
-		while (buff_map[j])
+		while (buff_map[j] != NULL)
 		{
+			printf ("**%s**\n", buff_map[j]);
 			map->xy[i][j] = ft_atoi (buff_map[j]);
 			map->color[i][j] = get_color(buff_map[j]); 
 			free (buff_map[j]);
@@ -34,10 +35,10 @@ void printmap(t_map *map)
 	int	j;
 
 	i = 0;
-	while (i < map->x + 1)
+	while (i < map->x)
 	{
 		j = 0;
-		while (j < map->y + 1)
+		while (j < map->y)
 		{
 			printf ("%-4d",map->xy[i][j]);
 			j++;

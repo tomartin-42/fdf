@@ -49,8 +49,7 @@ void	get_y(t_map *map, char *line)
 	map->y = 0;
 	while (i < ft_strlen(line))
 	{
-		if ((line[i] == ' ' || (9 <= line[i] && line[i] <= 13)) 
-		&& (ft_strchr("0123456789+-",line[i + 1])))
+		if ((line[i] == ' ') && (ft_strchr("0123456789+-",line[i + 1])))
 			map->y += 1;
 		i++;
 	}
@@ -64,7 +63,7 @@ void	dimension_map(t_map *map, int fd)
 	i = 0;
 	map->xy = (int **)malloc((map->x)*sizeof(int*));
 	map->color = (int **)malloc((map->x)*sizeof(int*));
-	while (i < map->x)
+	while (i < map->y)
 	{
 		map->xy[i] = (int *)malloc((map->y)*sizeof(int));
 		map->color[i] = (int *)malloc((map->y)*sizeof(int));

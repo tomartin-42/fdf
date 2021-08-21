@@ -14,13 +14,15 @@ void	paint_point(t_map *map, void *mlx, void *mlx_win)
 		while(j < map->y)
 		{
 			point = calculate_points(map, i, j);
-			if (i < map->x - 1)
+			if (i < map->x)
 			{
+			//	if (i + 1 < map->x)
 				point2 = calculate_points(map, i + 1, j);
 				draw_line(point, point2, mlx, mlx_win);
 			}
 			if (j < map->y - 1)
 			{
+			//	if (j + 1 < map->y)
 				point2 = calculate_points(map, i, j + 1);
 				draw_line(point, point2, mlx, mlx_win);
 			}
@@ -78,7 +80,7 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
-		printf ("%f - %f\n", line.y, point.y);
+	//	printf ("%f - %f\n", line.y, point.y);
 		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
 		if (line.D > 0)
 		{
