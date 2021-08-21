@@ -45,8 +45,8 @@ void	print_line_low(t_point point, t_point point2, void *mlx, void *mlx_win)
 		line.dy = -line.dy;
 	}
 	line.D = (2 * line.dy) - line.dx;
-	line.y = point.y;
-	line.x = point.x;
+	line.y =(int) point.y;
+	line.x = (int) point.x;
 	while (line.x < point2.x)
 	{
 		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
@@ -78,6 +78,7 @@ void	print_line_high(t_point point, t_point point2,  void *mlx, void *mlx_win)
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
+		printf ("%f - %f\n", line.y, point.y);
 		mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
 		if (line.D > 0)
 		{

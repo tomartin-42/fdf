@@ -46,7 +46,7 @@ void	get_y(t_map *map, char *line)
 	size_t	i;
 
 	i = 0;
-	map->y = 1;
+	map->y = 0;
 	while (i < ft_strlen(line))
 	{
 		if ((line[i] == ' ' || (9 <= line[i] && line[i] <= 13)) 
