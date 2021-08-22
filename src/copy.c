@@ -13,14 +13,13 @@ void	copy_to_map(t_map *map, char *argv)
 	fd = open (argv, O_RDONLY);
 	while (i < map->x) 
 	{
-		printf("HOLAi %d\n", i);
 		get_next_line(fd, &line);
 		buff_map = ft_split (line, ' ');
 		j = 0;
 		//while (buff_map[j] != NULL)
 		while (buff_map[j])
 		{
-			printf ("**%s    %d %d**\n", buff_map[j], i ,j);
+//			printf ("**%s    %d %d**\n", buff_map[j], i ,j);
 			map->xy[i][j] = ft_atoi (buff_map[j]);
 			map->color[i][j] = get_color(buff_map[j]); 
 			free (buff_map[j]);

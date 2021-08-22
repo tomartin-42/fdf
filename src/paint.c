@@ -17,16 +17,20 @@ void	paint_point(t_map *map, t_data *img)
 			if (i < map->x)
 			{
 				if (i + 1 < map->x)
-				point2 = calculate_points(map, i + 1, j);
+				{	
+					point2 = calculate_points(map, i + 1, j);
+				}
 				draw_line(img, point, point2);
+	//			printf ("***%f - %f\n", point.x, point2.y);
 			}
-			if (j < map->y - 1)
+			if (j < map->y)
 			{
 				if (j + 1 < map->y)
 				point2 = calculate_points(map, i, j + 1);
 				draw_line(img, point, point2);
+	//			printf ("***%f - %f\n", point.x, point2.y);
 			}
-		//	my_mlx_pixel_put(img, point.x, point.y, point.color);
+			//my_mlx_pixel_put(img, point.x, point.y, point.color);
 			j++;
 		}
 		i++;
@@ -51,7 +55,7 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 	line.x = (int) point.x;
 	while (line.x < point2.x)
 	{
-		my_mlx_pixel_put(data, line.x, line.y, point2.color);
+		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point2.color);
 		if (line.D > 0)
 		{
 			line.y = line.y + yi ;
@@ -62,6 +66,7 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 		line.x++;
 	}
 }
+
 void	print_line_high(t_data *data, t_point point, t_point point2)
 {
 	float	xi;
@@ -80,9 +85,8 @@ void	print_line_high(t_data *data, t_point point, t_point point2)
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
-	//	printf ("%f - %f\n", line.y, point2.y);
 	//	mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
-		my_mlx_pixel_put(data, line.x, line.y, point2.color);
+		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point2.color);
 		if (line.D > 0)
 		{
 			line.x = line.x + xi;
@@ -117,19 +121,24 @@ t_point	calculate_points(t_map *map, int x, int y)
 	t_point	point;
 	float	z;
 
-	point.color = map->color[x][y];
-	z = (map->xy[x][y]);
+	//point.color = map->color[x][y];
+	point.color = 0x00FFFFFF;
+	//printf ("----%d %d----\n",x ,y);
+	z = (map->xy[x][y]) * sin(M_PI / 6);
 	point.x = (y - x) * cos (M_PI / 6) * map->scale;
 	point.y = ((x + y - z) * sin (M_PI / 6)) * map->scale;
 	point.x = point.x + map->center_x;
 	point.y = point.y + map->center_y;
+//	printf("++ %f %f ++\n", point.x, point.y);
+//	printf("++ %d %d ++\n", map->center_x, map->center_y);
 	return (point);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
-
+	
+	//printf("*%d - %d -- %d --\n", x, y, data->line_length);
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }

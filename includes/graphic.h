@@ -24,6 +24,10 @@ typedef struct s_map{
 	int	x;
 	int	y;
 	int	scale;
+	int	x_max;
+	int	y_max;
+	int	x_min;
+	int	y_min;
 	int	center_x;
 	int	center_y;
 	int	**color;
