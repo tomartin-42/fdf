@@ -64,7 +64,6 @@ int	get_color(char *str);
 
 void	calculate_scale(t_map *map);
 t_point	size_points(t_map *map, int x, int y);
-void	calculate_true_scale(t_map *map);
 void	calculate_true_center(t_map *map);
 void	calculate_scale_final(t_map *map);
 

@@ -31,6 +31,7 @@ void	paint_point(t_map *map, t_data *img)
 	//			printf ("***%f - %f\n", point.x, point2.y);
 			}
 			//my_mlx_pixel_put(img, point.x, point.y, point.color);
+			my_mlx_pixel_put(img, 640, 360, 0x0000FFFF);
 			j++;
 		}
 		i++;
@@ -138,7 +139,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 	
-	//printf("*%d - %d -- %d --\n", x, y, data->line_length);
+	//printf("*%d-\n", (data->endian));
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
