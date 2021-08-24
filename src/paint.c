@@ -1,4 +1,3 @@
-#include "graphic.h"
 
 void	paint_point(t_map *map, t_data *img)
 {
@@ -14,21 +13,15 @@ void	paint_point(t_map *map, t_data *img)
 		while(j < map->y)
 		{
 			point = calculate_points(map, i, j);
-			if (i < map->x)
+			if (i < map->x && i + 1 < map->x)
 			{
-				if (i + 1 < map->x)
-				{
-					point2 = calculate_points(map, i + 1, j);
-					draw_line(img, point, point2);
-				}
+				point2 = calculate_points(map, i + 1, j);
+				draw_line(img, point, point2);
 			}
-			if (j < map->y)
-			{
-				if (j + 1 < map->y)
-				{
-					point2 = calculate_points(map, i, j + 1);
-					draw_line(img, point, point2);
-				}
+			if (j < map->y && j + 1 < map->y)
+			{	
+				point2 = calculate_points(map, i, j + 1);
+				draw_line(img, point, point2);
 			}
 			j++;
 		}
