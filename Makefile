@@ -23,7 +23,7 @@ MINLBX  = $(addprefix $(MINLBX_DIR), libmlx.a)
 
 # Libft and Minilibx linkers
 LNK  = -L $(LIBFT_DIR) -lft -L $(MINLBX_DIR) \
-	   -lmlx -framework OpenGL -framework AppKit
+	   -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # all rule
 all: obj $(LIBFT) $(MINLBX) $(NAME)
@@ -41,6 +41,7 @@ $(MINLBX):
 $(NAME): $(OBJ)
 	@echo "Compiling... Wait a sec."
 	@gcc $(OBJ) $(LNK) -lm -o $(NAME)
+	cp $(MINLBX_DIR)/libmlx.dylib ./
 	@echo "$(NAME) generated!".
 
 bonus: all

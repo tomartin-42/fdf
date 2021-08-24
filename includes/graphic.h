@@ -7,8 +7,10 @@
 # include <fcntl.h>
 # include <math.h>
 # include <time.h>
+//# include <mlx.h>
 
 # include "mlx.h"
+//# include "libmlx.dylib"
 # include "libft.h"
 
 typedef struct	s_data {
@@ -65,7 +67,7 @@ int	get_color(char *str);
 void	calculate_scale(t_map *map);
 t_point	size_points(t_map *map, int x, int y);
 void	calculate_true_center(t_map *map);
-void	calculate_scale_final(t_map *map);
+void	adjust_and_scale(t_map *map, int x_long, int y_long);
 
 void	paint_point(t_map *map, t_data *data);
 void	print_line_low(t_data *data, t_point point, t_point point2);

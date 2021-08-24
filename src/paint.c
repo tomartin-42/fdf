@@ -17,21 +17,19 @@ void	paint_point(t_map *map, t_data *img)
 			if (i < map->x)
 			{
 				if (i + 1 < map->x)
-				{	
+				{
 					point2 = calculate_points(map, i + 1, j);
+					draw_line(img, point, point2);
 				}
-				draw_line(img, point, point2);
-	//			printf ("***%f - %f\n", point.x, point2.y);
 			}
 			if (j < map->y)
 			{
 				if (j + 1 < map->y)
-				point2 = calculate_points(map, i, j + 1);
-				draw_line(img, point, point2);
-	//			printf ("***%f - %f\n", point.x, point2.y);
+				{
+					point2 = calculate_points(map, i, j + 1);
+					draw_line(img, point, point2);
+				}
 			}
-			//my_mlx_pixel_put(img, point.x, point.y, point.color);
-			my_mlx_pixel_put(img, 640, 360, 0x0000FFFF);
 			j++;
 		}
 		i++;
@@ -86,7 +84,6 @@ void	print_line_high(t_data *data, t_point point, t_point point2)
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
-	//	mlx_pixel_put(mlx, mlx_win, line.x, line.y, point2.color);
 		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point2.color);
 		if (line.D > 0)
 		{
@@ -139,7 +136,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 	
-	//printf("*%d-\n", (data->endian));
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
