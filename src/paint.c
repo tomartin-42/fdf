@@ -1,3 +1,4 @@
+#include "graphic.h"
 
 void	paint_point(t_map *map, t_data *img)
 {
@@ -31,15 +32,14 @@ void	paint_point(t_map *map, t_data *img)
 
 void	print_line_low(t_data *data, t_point point, t_point point2)
 {
-	float	yi;
 	t_line	line;
 	
 	line.dx = point2.x - point.x;
 	line.dy = point2.y - point.y;
-	yi = 1;
+	line.ni = 1;
 	if (line.dy < 0)
 	{
-		yi = -1;
+		line.ni = -1;
 		line.dy = -line.dy;
 	}
 	line.D = (2 * line.dy) - line.dx;
@@ -50,7 +50,7 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point2.color);
 		if (line.D > 0)
 		{
-			line.y = line.y + yi ;
+			line.y = line.y + line.ni;
 			line.D = line.D + (2 * (line.dy - line.dx));
 		}
 		else
@@ -61,15 +61,14 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 
 void	print_line_high(t_data *data, t_point point, t_point point2)
 {
-	float	xi;
 	t_line	line;
 	
 	line.dx = point2.x - point.x;
 	line.dy = point2.y - point.y;
-	xi = 1;
+	line.ni = 1;
 	if (line.dx < 0)
 	{
-		xi = -1;
+		line.ni = -1;
 		line.dx = -line.dx;
 	}
 	line.D = (2 * line.dx) - line.dy;
@@ -80,7 +79,7 @@ void	print_line_high(t_data *data, t_point point, t_point point2)
 		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point2.color);
 		if (line.D > 0)
 		{
-			line.x = line.x + xi;
+			line.x = line.x + line.ni;
 			line.D = line.D + (2 * (line.dx -line.dy));
 		}
 		else

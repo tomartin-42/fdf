@@ -40,36 +40,36 @@ void	calculate_true_center(t_map *map)
 		while (j < map->y)
 		{
 			point = size_points(map, i, j);
-			if((point.x * i) >= map->x_max)
+			if((point.x) >= map->x_max)
 				map->x_max = point.x;	
-			if((point.x * i) <= map->x_min)
+			if((point.x) <= map->x_min)
 				map->x_min = point.x;	
-			if((point.y * j)>= map->y_max)
+			if((point.y)>= map->y_max)
 				map->y_max = point.y;	
-			if((point.y * j)<= map->y_min)
+			if((point.y)<= map->y_min)
 				map->y_min = point.y;	
 			j++;
 		}
 		i++;
 	}
-	x_long = map->x_max + map->x_min;
-	y_long = map->y_max + map->y_min;
+	x_long = abs(map->x_max) + abs(map->x_min);
+	y_long = abs(map->y_max) + abs(map->y_min);
 	adjust_and_scale (map, x_long, y_long);
 }
 
 void	adjust_and_scale (t_map *map, int x_long, int y_long)
 {
 	map->scale = 200;
-	while ((map->x_max * map->scale) > 1280 || (map->y_max * map->scale) > 720)
-		map->scale -= 1;
-	//if (map->scale < 1)
-	//	map->scale = 2;
+	while ((map->x_max * map->scale) > 960 || (map->y_max * map->scale) > 520)
+		map->scale -= 0.2;
+	if (map->scale <= 1)
+		map->scale = 1;
 	printf("**long= %d %d **\n", x_long, y_long);
 	printf("**max_min %d %d - %d %d**\n", map->x_max, map->y_max, map->x_min, map->y_min);
-	map->center_x = 1920 - ((x_long * map->scale) * cos(M_PI / 6));
+	map->center_x = 1920 - (x_long * map->scale) * cos(M_PI / 6);
 	map->center_x = (map->center_x / 2);
-	map->center_y = 1080 - ((y_long * map->scale) * sin(M_PI / 6));
+	map->center_y = 1080 - (y_long * map->scale) * sin(M_PI / 6);
 	map->center_y = (map->center_y / 2);
-	printf("{{%d}}\n",map->scale);
+	printf("{{%f}}\n",map->scale);
 	printf("center= %d %d\n", map->center_x, map->center_y);
 }

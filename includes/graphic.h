@@ -25,7 +25,7 @@ typedef struct s_map{
 	int	**xy;
 	int	x;
 	int	y;
-	int	scale;
+	float	scale;
 	int	x_max;
 	int	y_max;
 	int	x_min;
@@ -44,13 +44,11 @@ typedef struct s_point{
 typedef struct s_line{
 	float	dx;
 	float	dy;
+	float	ni;
 	float	x;
 	float	y;
 	float	D;
 }	t_line;
-
-# define Y_MED 360
-# define X_MED 640	
 
 int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
