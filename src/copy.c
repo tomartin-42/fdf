@@ -21,7 +21,7 @@ void	copy_to_map(t_map *map, char *argv)
 		{
 //			printf ("**%s    %d %d**\n", buff_map[j], i ,j);
 			map->xy[i][j] = ft_atoi (buff_map[j]);
-			map->color[i][j] = get_color(buff_map[j]); 
+			get_color(map, buff_map[j],i, j); 
 			free (buff_map[j]);
 			j++;
 		}
@@ -51,54 +51,28 @@ void printmap(t_map *map)
 	printf ("\n");
 }
 
-static int	get_idx(const char *base, char a)
+void	get_color(t_map *map, char *str, int i, int j)
 {
-	int	idx;
-	int	out;
+	int	base;
+	int	len;
+	int	ini;
 
-	out = -1;
-	idx = 0;
-	while (base[idx])
+	ini = 0;
+	while (str[ini] != ',' && ini < (int) ft_strlen(str))
+		ini++;
+	ini = ini + 2;
+	base = 1;
+	len = ft_strlen(str) - 1;
+	while (len > ini)
 	{
-		if (base[idx] == a)
-			out = idx;
-		idx++;
+		if (ft_isdigit(str[len]))
+			map->color[i][j] += (str[len] - 48) * base;
+		else if (str[len] >= 'A' && str[len] <= 'F')
+			map->color[i][j] += (str[len] - 55) * base;
+		else if (str[len] >= 'a' && str[len] <= 'f')
+			map->color[i][j] += (str[len] - 87) * base;
+		base *= 16;
+		len--;
 	}
-	return (out);
-}
-
-static char	*get_str_in_lowercase(char **s, int start, size_t len)
-{
-	char	*out;
-	char	*aux;
-
-	aux = ft_substr(*s, start, len + 1);
-	out = aux;
-	while (*aux)
-	{
-		*aux = ft_tolower(*aux);
-		aux++;
-	}
-	return (out);
-}
-
-int	get_color(char *str)
-{
-	int		color;
-	char	*aux;
-	char	*aux_free;
-	int		power;
-
-	while(*str++ != ',')
-	if (*str != ',')
-		return (0xFFFFFF);
-	power = 5;
-	aux = get_str_in_lowercase(&str, 3, 6);
-	aux_free = aux;
-	color = 0;
-	while (*aux)
-		color = color
-			+ (int)(get_idx("0123456789abcdef", *aux++) * pow(16, power--));
-	free(aux_free);
-	return (color);
+	printf("COLOR = %X -> %d\n", map->color[i][j], map->color[i][j]);
 }

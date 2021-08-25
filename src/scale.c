@@ -13,6 +13,7 @@ void calculate_scale(t_map *map)
 	map->x_d[1] = 0;
 	map->y_d[0] = 0;
 	map->y_d[1] = 0;
+	printf("HOLA\n");
 	calculate_true_center(map);
 	if(map->scale < 1)
 		map->scale = 1;

@@ -60,7 +60,7 @@ void	dimension_map(t_map *map, int fd);
 void	init_color(t_map *map);
 
 void	copy_to_map(t_map *map, char *argv);
-int	get_color(char *str);
+void	get_color(t_map *map, char *str, int i, int j);
 
 void	calculate_scale(t_map *map);
 t_point	size_points(t_map *map, int x, int y);
