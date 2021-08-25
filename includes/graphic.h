@@ -26,10 +26,10 @@ typedef struct s_map{
 	int	x;
 	int	y;
 	float	scale;
-	int	x_max;
-	int	y_max;
-	int	x_min;
-	int	y_min;
+	int	x_u[2];
+	int	y_u[2];
+	int	x_d[2];
+	int	y_d[2];
 	int	center_x;
 	int	center_y;
 	int	**color;
@@ -65,7 +65,7 @@ int	get_color(char *str);
 void	calculate_scale(t_map *map);
 t_point	size_points(t_map *map, int x, int y);
 void	calculate_true_center(t_map *map);
-void	adjust_and_scale(t_map *map, int x_long, int y_long);
+void	adjust_and_scale(t_map *map);
 
 void	paint_point(t_map *map, t_data *data);
 void	print_line_low(t_data *data, t_point point, t_point point2);
