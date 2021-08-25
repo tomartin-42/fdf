@@ -58,21 +58,25 @@ void	get_color(t_map *map, char *str, int i, int j)
 	int	ini;
 
 	ini = 0;
-	while (str[ini] != ',' && ini < (int) ft_strlen(str))
-		ini++;
-	ini = ini + 2;
-	base = 1;
-	len = ft_strlen(str) - 1;
-	while (len > ini)
-	{
-		if (ft_isdigit(str[len]))
-			map->color[i][j] += (str[len] - 48) * base;
-		else if (str[len] >= 'A' && str[len] <= 'F')
-			map->color[i][j] += (str[len] - 55) * base;
-		else if (str[len] >= 'a' && str[len] <= 'f')
-			map->color[i][j] += (str[len] - 87) * base;
-		base *= 16;
-		len--;
+	if(ft_strchr(str, ','))
+	{	
+		while (str[ini] != ',' && ini < (int) ft_strlen(str))
+			ini++;
+		ini = ini + 2;
+		base = 1;
+		len = ft_strlen(str) - 1;
+		while (len > ini)
+		{
+			if (ft_isdigit(str[len]))
+				map->color[i][j] += (str[len] - 48) * base;
+			else if (str[len] >= 'A' && str[len] <= 'F')
+				map->color[i][j] += (str[len] - 55) * base;
+			else if (str[len] >= 'a' && str[len] <= 'f')
+				map->color[i][j] += (str[len] - 87) * base;
+			base *= 16;
+			len--;
+		}
 	}
-	printf("COLOR = %X -> %d\n", map->color[i][j], map->color[i][j]);
+	else
+		map->color[i][j] = 0x00FFFFFF;
 }

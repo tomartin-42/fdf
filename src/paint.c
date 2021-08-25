@@ -111,8 +111,7 @@ t_point	calculate_points(t_map *map, int x, int y)
 	t_point	point;
 	float	z;
 
-	//point.color = map->color[x][y];
-	point.color = 0x00FFFFFF;
+	point.color = map->color[x][y];
 	//printf ("----%d %d----\n",x ,y);
 	//z = (map->xy[x][y]) * sin(M_PI / 6);
 	z = (map->xy[x][y]);
