@@ -73,5 +73,6 @@ t_point	calculate_points(t_map *map, int x, int y);
 void	draw_line(t_data *data, t_point point, t_point point2);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
+void	color(t_point *point, t_point *point2);
 void printmap(t_map *map);
 #endif

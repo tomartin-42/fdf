@@ -24,6 +24,7 @@ void	paint_point(t_map *map, t_data *img)
 				point2 = calculate_points(map, i, j + 1);
 				draw_line(img, point, point2);
 			}
+			my_mlx_pixel_put(img, point.x, point.y, point.color);
 			j++;
 		}
 		i++;
@@ -43,10 +44,11 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 		line.dy = -line.dy;
 	}
 	line.D = (2 * line.dy) - line.dx;
-	line.y =(int) point.y;
-	line.x = (int) point.x;
+	line.y = point.y;
+	line.x = point.x;
 	while (line.x < point2.x)
 	{
+		color(&point, &point2);
 		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point.color);
 		if (line.D > 0)
 		{
@@ -76,7 +78,8 @@ void	print_line_high(t_data *data, t_point point, t_point point2)
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
-		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point2.color);
+		color(&point, &point2);
+		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point.color);
 		if (line.D > 0)
 		{
 			line.x = line.x + line.ni;
@@ -92,17 +95,30 @@ void	draw_line(t_data *data, t_point point, t_point point2)
 {
 	if (fabsf(point2.y - point.y) < fabsf(point2.x - point.x))
 	{	
+		
 		if (point.x > point2.x)
+		{
+		//	color(&point2, &point);
 			print_line_low(data, point2, point);
+		}
 		else
+		{
+		//	color(&point, &point2);
 			print_line_low(data, point, point2);
+		}
 	}
 	else
 	{
 		if (point.y > point2.y)
+		{
+		//	color(&point2, &point);
 			print_line_high(data, point2, point);
+		}
 		else
+		{
+		//	color(&point, &point2);
 			print_line_high(data, point, point2);
+		}
 	}	
 }
 
