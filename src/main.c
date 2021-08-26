@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	mlx = mlx_init();
 //	mlx_win = mlx_new_window(mlx, 1600, 1080, argv[1]);
 //	img.img = mlx_new_image(mlx, 1600, 1080);
-	printf("KKKK\n");
 	mlx_win = mlx_new_window(mlx, 1920, 1080, argv[1]);
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);

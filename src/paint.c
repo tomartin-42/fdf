@@ -47,7 +47,7 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 	line.x = (int) point.x;
 	while (line.x < point2.x)
 	{
-		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point2.color);
+		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point.color);
 		if (line.D > 0)
 		{
 			line.y = line.y + line.ni;
@@ -128,6 +128,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 	
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	if ((x > 0 && x < 1900) && (y > 0 && y < 1079))
+	{	
+		dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+		*(unsigned int*)dst = color;
+	}
 }

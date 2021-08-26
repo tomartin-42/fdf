@@ -61,23 +61,32 @@ void	calculate_true_center(t_map *map)
 		}
 		i++;
 	}
+	printf("y_u = %d, %d\n", map->y_u[0], map->y_u[1]);
+	printf("y_d = %d, %d\n", map->y_d[0], map->y_d[1]);
 	adjust_and_scale (map);
 }
 
 void	adjust_and_scale (t_map *map)
 {
 	t_point	point;
+	t_point	point2;
+	float	div_x;
 
 	point = size_points(map, map->y_d[0], map->y_d[1]);
-	while (point.y + map->center_y < 10)
-		map->center_y += 1;
+	point2 = size_points(map, map->y_u[0], map->y_u[1]);
 	map->scale = 200;
-	point = size_points(map, map->y_u[0], map->y_u[1]);
-	while ((point.y * map->scale) + map->center_y > 540)
+	while ((point2.y * map->scale) - (point.y * map->scale) > 1040)
+		map->scale -= 0.2;
+	point = size_points(map, 0, 0);
+	point2 = size_points(map, map->x - 1, map->y - 1);
+	while ((point2.y * map->scale) - (point.y * map->scale) > 1910)
 		map->scale -= 0.2;
 	point = size_points(map, map->y_d[0], map->y_d[1]);
-	while ((point.y * map->scale) + map->center_y < 0)
+	while ((point.y * map->scale) + map->center_y < 10)
 		map->center_y += 1;
-	map->center_x = 700; 
-	map->center_y = 340; 
+	point = size_points(map, 0, map->y -1);
+	point2 = size_points(map, map->x - 1, 0);
+	div_x = (point2.x * map->scale - point.x * map->scale);
+	map->center_x = (1920 - div_x) / 2;
+	printf("Escala= %f\n", map->scale);
 }
