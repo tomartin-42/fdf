@@ -20,7 +20,7 @@ t_point	size_points(t_map *map, int x, int y)
 	float	z;
 
 	//z = (map->xy[x][y]) * sin(M_PI / 6);
-	z = (map->xy[x][y]) / 1.6; 
+	z = (map->xy[x][y]) / 3; 
 	point.x = (y - x) * cos (M_PI / 6);
 	point.y = ((x + y - z) * sin (M_PI / 6));
 	return (point);
