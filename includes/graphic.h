@@ -10,7 +10,6 @@
 //# include <mlx.h>
 
 # include "mlx.h"
-//# include "libmlx.dylib"
 # include "libft.h"
 
 typedef struct	s_data {
@@ -26,9 +25,7 @@ typedef struct s_map{
 	int	x;
 	int	y;
 	float	scale;
-	int	x_u[2];
 	int	y_u[2];
-	int	x_d[2];
 	int	y_d[2];
 	int	center_x;
 	int	center_y;
