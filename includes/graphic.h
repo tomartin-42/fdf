@@ -47,6 +47,8 @@ typedef struct s_line{
 	float	D;
 }	t_line;
 
+# define Z_MOD 3
+
 int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
