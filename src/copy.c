@@ -68,7 +68,7 @@ void	get_color(t_map *map, char *str, int i, int j)
 		len = ft_strlen(str) - 1;
 		while (len > ini)
 		{
-			printf("%c",str[len]);
+	//		printf("%c",str[len]);
 			if (ft_isdigit(str[len]))
 				map->color[i][j] += (str[len] - 48) * base;
 			else if (str[len] >= 'A' && str[len] <= 'F')
@@ -78,10 +78,10 @@ void	get_color(t_map *map, char *str, int i, int j)
 			base *= 16;
 			len--;
 		}
-			printf("\n");
+	//		printf("\n");
 	}
 	else
 		map->color[i][j] = 0x00FFFFFF;
-	printf("%s\n", str);
-	printf("COLOR: %X\n", map->color[i][j]);
+	//printf("%s\n", str);
+	//printf("COLOR: %X\n", map->color[i][j]);
 }

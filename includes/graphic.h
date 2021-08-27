@@ -29,7 +29,7 @@ typedef struct s_map{
 	int	y_d[2];
 	int	center_x;
 	int	center_y;
-	unsigned int	**color;
+	int	**color;
 }	t_map;
 
 typedef struct s_point{
@@ -83,7 +83,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	color(t_point *point, t_point *point2);
 t_color	dismount_color(int color);
-t_color	diff_color(t_color color, t_color color2, int dtot);
+t_color	diff_color(t_color color, t_color color2, float dtot);
 t_color aply_diff(t_color color, t_color diff_color);
 
 void printmap(t_map *map);
