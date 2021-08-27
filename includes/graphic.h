@@ -29,7 +29,7 @@ typedef struct s_map{
 	int	y_d[2];
 	int	center_x;
 	int	center_y;
-	int	**color;
+	unsigned int	**color;
 }	t_map;
 
 typedef struct s_point{
@@ -46,6 +46,14 @@ typedef struct s_line{
 	float	y;
 	float	D;
 }	t_line;
+
+typedef struct s_color{
+	int			t;
+	int 		r;
+	int 		g;
+	int 		b;
+	unsigned int color;
+} t_color;
 
 # define Z_MOD 3
 
@@ -74,5 +82,16 @@ void	draw_line(t_data *data, t_point point, t_point point2);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	color(t_point *point, t_point *point2);
+t_color	dismount_color(int color);
+t_color	diff_color(t_color color, t_color color2, int dtot);
+t_color aply_diff(t_color color, t_color diff_color);
+
 void printmap(t_map *map);
+
+int get_t(int color);
+int get_r(int color);
+int get_g(int color);
+int get_b(int color);
+int create_trgb(int t, int r, int g, int b);
+
 #endif
