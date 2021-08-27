@@ -4,7 +4,7 @@ void	color(t_point *point, t_point *point2)
 {
 	t_color clr;
 	t_color clr2;	
-	static t_color diff_c;
+	t_color diff_c;
 	int	dist_x;
 	int 	dist_y;
 	float	dtot;
@@ -25,12 +25,13 @@ void	color(t_point *point, t_point *point2)
 //	printf("2 - t: %X\nr: %X\ng: %X\nb: %X\n", clr2.t, clr2.r, clr2.g, clr2.b);
 	dist_x = point2->x - point->x;
 	dist_y = point2->y - point->y;
-	dtot = sqrt(pow(dist_x, 2) + pow(dist_y, 2));
+	dtot = dist_x + dist_y;
+	//dtot = sqrt(pow(dist_x, 2) + pow(dist_y, 2));
 	diff_c = diff_color(clr, clr2, dtot);
 	clr =	aply_diff(clr, diff_c);
-	printf("T - t: %X\nr: %X\ng: %X\nb: %X\n", clr.t, clr.r, clr.g, clr.b);
+//	printf("T - t: %X\nr: %X\ng: %X\nb: %X\n", clr.t, clr.r, clr.g, clr.b);
 	point->color = create_trgb(clr.t, clr.r, clr.g, clr.b);
-//	printf("Color out= %X\n", point->color);
+	printf("Color out= %X\n", point->color);
 }
 
 t_color dismount_color (int color)
@@ -48,6 +49,7 @@ t_color	diff_color(t_color color, t_color color2, float dtot)
 {
 	t_color inc_color;
 
+	dtot = dtot + 1;
 	inc_color.t = (int)(color2.t - color.t) / dtot;
 	inc_color.r = (int)(color2.r - color.r) / dtot;
 	inc_color.g = (int)(color2.g - color.g) / dtot;
