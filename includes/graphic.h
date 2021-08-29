@@ -45,6 +45,7 @@ typedef struct s_line{
 	float	x;
 	float	y;
 	float	D;
+	int		color;
 }	t_line;
 
 typedef struct s_color{
@@ -81,10 +82,14 @@ t_point	calculate_points(t_map *map, int x, int y);
 void	draw_line(t_data *data, t_point point, t_point point2);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-void	color(t_point *point, t_point *point2);
-t_color	dismount_color(int color);
-t_color	diff_color(t_color color, t_color color2, int dtot);
-t_color aply_diff(t_color color, t_color diff_color);
+//--------------color antiguo---------------------//
+//void	color(t_point *point, t_point *point2);
+//t_color	dismount_color(int color);
+//t_color	diff_color(t_color color, t_color color2, int dtot);
+//t_color aply_diff(t_color color, t_color diff_color);
+
+
+void	color(t_point *point, t_point *point2, t_line *line);
 
 void printmap(t_map *map);
 

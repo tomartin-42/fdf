@@ -37,6 +37,7 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 	
 	line.dx = point2.x - point.x;
 	line.dy = point2.y - point.y;
+	line.color = point.color;
 	line.ni = 1;
 	if (line.dy < 0)
 	{
@@ -48,8 +49,8 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 	line.x = point.x;
 	while (line.x < point2.x)
 	{
-		color(&point, &point2);
-		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point.color);
+		color(&point, &point2, &line);
+		my_mlx_pixel_put(data, (int)line.x, (int)line.y, line.color);
 		if (line.D > 0)
 		{
 			line.y = line.y + line.ni;
@@ -67,6 +68,7 @@ void	print_line_high(t_data *data, t_point point, t_point point2)
 	
 	line.dx = point2.x - point.x;
 	line.dy = point2.y - point.y;
+	line.color = point.color;
 	line.ni = 1;
 	if (line.dx < 0)
 	{
@@ -78,8 +80,8 @@ void	print_line_high(t_data *data, t_point point, t_point point2)
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
-		color(&point, &point2);
-		my_mlx_pixel_put(data, (int)line.x, (int)line.y, point.color);
+		color(&point, &point2, &line);
+		my_mlx_pixel_put(data, (int)line.x, (int)line.y, line.color);
 		if (line.D > 0)
 		{
 			line.x = line.x + line.ni;
@@ -95,30 +97,17 @@ void	draw_line(t_data *data, t_point point, t_point point2)
 {
 	if (fabsf(point2.y - point.y) < fabsf(point2.x - point.x))
 	{	
-		
 		if (point.x > point2.x)
-		{
-		//	color(&point2, &point);
 			print_line_low(data, point2, point);
-		}
 		else
-		{
-		//	color(&point, &point2);
 			print_line_low(data, point, point2);
-		}
 	}
 	else
 	{
 		if (point.y > point2.y)
-		{
-		//	color(&point2, &point);
 			print_line_high(data, point2, point);
-		}
 		else
-		{
-		//	color(&point, &point2);
 			print_line_high(data, point, point2);
-		}
 	}	
 }
 
