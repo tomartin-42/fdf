@@ -25,7 +25,6 @@ void	color(t_point *point, t_point *point2, t_line *line)
 	int		blue;
 	double	pctg;
 
-	//printf("HOLA\n");
 	if (line->color == point2->color)
 		;
 	else
