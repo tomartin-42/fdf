@@ -20,7 +20,7 @@ t_point	size_points(t_map *map, int x, int y)
 	float	z;
 
 	//z = (map->xy[x][y]) * sin(M_PI / 6);
-	z = (map->xy[x][y]);
+	z = (map->xy[x][y]) / 3;
 	point.x = (y - x) * cos (M_PI / 6);
 	point.y = ((x + y - z) * sin (M_PI / 6));
 	return (point);
@@ -80,4 +80,6 @@ void	adjust_and_scale (t_map *map)
 	if ((point.x * map->scale) < 960)
 		while (((point.x * map->scale) + map->center_x) < 960)
 			map->center_x += 1;
+	else if ((point.x * map->scale) > 960)
+			map->center_x -= 1;
 }

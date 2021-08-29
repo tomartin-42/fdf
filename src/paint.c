@@ -117,7 +117,7 @@ t_point	calculate_points(t_map *map, int x, int y)
 	float	z;
 
 	point.color = map->color[x][y];
-	z = (map->xy[x][y]);
+	z = (map->xy[x][y]) / 3;
 	point.x = (y - x) * cos (M_PI / 6) * map->scale;
 	point.y = ((x + y - z) * sin (M_PI / 6)) * map->scale;
 	point.x = point.x + map->center_x;

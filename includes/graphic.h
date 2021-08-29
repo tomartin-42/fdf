@@ -15,9 +15,9 @@
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 } 	t_data;
 
 typedef struct s_map{
@@ -56,8 +56,6 @@ typedef struct s_color{
 	unsigned int color;
 } t_color;
 
-# define Z_MOD 3
-
 int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
@@ -92,11 +90,11 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	color(t_point *point, t_point *point2, t_line *line);
 
 void printmap(t_map *map);
-
+/*
 int get_t(int color);
 int get_r(int color);
 int get_g(int color);
 int get_b(int color);
 int create_trgb(int t, int r, int g, int b);
-
+*/
 #endif
