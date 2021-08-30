@@ -33,6 +33,7 @@ t_map	check_fd_map(int fd)
 			i++;
 			printf("%d\n",map.x);*/
 			get_y(&map, line);
+			free(line);
 //	printf("%d\n", map.x);
 	//	}
 		map.x++;

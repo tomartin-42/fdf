@@ -65,6 +65,7 @@ int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
 void	execut_error (void);
+void	freeall(t_map *map);
 
 void	get_y(t_map *map, char *line);
 void	dimension_map(t_map *map, int fd);

@@ -2,11 +2,11 @@
 
 void	copy_to_map(t_map *map, char *argv)
 {
-	int	fd;
+	int		fd;
 	char	*line;
 	char	**buff_map;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 
 	i = 0;
@@ -16,6 +16,7 @@ void	copy_to_map(t_map *map, char *argv)
 		get_next_line(fd, &line);
 		buff_map = ft_split (line, ' ');
 		j = 0;
+		free(line);
 		//while (buff_map[j] != NULL)
 		while (buff_map[j])
 		{
