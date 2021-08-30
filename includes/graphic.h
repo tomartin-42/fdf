@@ -69,7 +69,6 @@ void	freeall(t_map *map);
 
 void	get_y(t_map *map, char *line);
 void	dimension_map(t_map *map, int fd);
-void	init_color(t_map *map);
 
 void	copy_to_map(t_map *map, char *argv);
 void	get_color(t_map *map, char *str, int i, int j);

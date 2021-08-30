@@ -6,7 +6,7 @@ static int	key_hook(int keycode, t_win *win)
 	{
 		mlx_clear_window(win->mlx, win->mlx_win);
 		mlx_destroy_window(win->mlx, win->mlx_win);
-		system("leaks -list fdf");
+		system("leaks fdf");
 		exit(0);
 	}
 	return(0);
