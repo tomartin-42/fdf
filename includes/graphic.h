@@ -12,6 +12,11 @@
 # include "mlx.h"
 # include "libft.h"
 
+typedef struct	s_win{
+	void	*mlx;
+	void	*mlx_win;
+}	t_win;
+
 typedef struct	s_data {
 	void	*img;
 	char	*addr;

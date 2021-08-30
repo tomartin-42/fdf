@@ -13,7 +13,7 @@ static int	key_hook(int keycode, void *mlx, void *mlx_win)
 
 int	main(int argc, char **argv)
 {
-	int	fd;
+	int		fd;
 	t_map	map;
 	void	*mlx;
 	void	*mlx_win;
@@ -25,10 +25,10 @@ int	main(int argc, char **argv)
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, argv[1]);
 	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_key_hook(mlx_win, key_hook, &mlx);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	calculate_scale(&map);
 	paint_point(&map, &img); 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_key_hook(mlx_win, key_hook, &mlx);
 	mlx_loop(mlx);
 }
