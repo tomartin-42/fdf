@@ -18,26 +18,16 @@ int	check_correct_argc(int argc, char **argv)
 t_map	check_fd_map(int fd)
 {
 	char	*line;
-	//int	i;
 	t_map	map;
 
 	map.x = 0;
 	while (get_next_line(fd, &line))
 	{
-		/*i = 0;
-		while (i <(int) ft_strlen(line))
-		{
-			if (ft_strchr("+-", line[i])
-			 && (!ft_strchr("0123456789",line[i + 1])))
-				execut_error();
-			i++;
-			printf("%d\n",map.x);*/
-			get_y(&map, line);
-			free(line);
-//	printf("%d\n", map.x);
-	//	}
+		get_y(&map, line);
+		free(line);
 		map.x++;
 	}
+	free(line);
 	dimension_map(&map, fd);
 	return (map);
 }

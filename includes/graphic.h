@@ -86,21 +86,6 @@ t_point	calculate_points(t_map *map, int x, int y);
 void	draw_line(t_data *data, t_point point, t_point point2);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-//--------------color antiguo---------------------//
-//void	color(t_point *point, t_point *point2);
-//t_color	dismount_color(int color);
-//t_color	diff_color(t_color color, t_color color2, int dtot);
-//t_color aply_diff(t_color color, t_color diff_color);
-
-
 void	color(t_point *point, t_point *point2, t_line *line);
 
-void printmap(t_map *map);
-/*
-int get_t(int color);
-int get_r(int color);
-int get_g(int color);
-int get_b(int color);
-int create_trgb(int t, int r, int g, int b);
-*/
 #endif
