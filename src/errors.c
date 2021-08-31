@@ -2,10 +2,7 @@
 
 void	execut_error (int errornum)
 {
-	char	*s;
-
-	s =strerror(errornum);
-	perror(s);
+	printf("%s\n", strerror(errornum));
 	exit(errornum);
 }
   

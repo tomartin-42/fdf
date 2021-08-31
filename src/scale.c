@@ -1,7 +1,7 @@
 #include "graphic.h"
 
 //calculate the map scale and center this.
-void calculate_scale(t_map *map)
+void	calculate_scale(t_map *map)
 {
 	map->center_x = 0;
 	map->center_y = 0;
@@ -10,7 +10,7 @@ void calculate_scale(t_map *map)
 	map->y_d[0] = 0;
 	map->y_d[1] = 0;
 	calculate_true_center(map);
-	if(map->scale < 1)
+	if (map->scale < 1)
 		map->scale = 1;
 }
 
@@ -25,10 +25,24 @@ t_point	size_points(t_map *map, int x, int y)
 	return (point);
 }
 
+static void	get_p(t_map *map, int i, int j, int control)
+{
+	if (control == 1)
+	{
+		map->y_u[0] = i;
+		map->y_u[1] = j;
+	}
+	else
+	{
+		map->y_d[0] = i;
+		map->y_d[1] = j;
+	}
+}
+
 void	calculate_true_center(t_map *map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_point	point;
 	t_point	point2;
 
@@ -41,16 +55,10 @@ void	calculate_true_center(t_map *map)
 			point = size_points(map, i, j);
 			point2 = size_points(map, map->y_u[0], map->y_u[1]);
 			if (point.y > point2.y)
-			{
-				map->y_u[0] = i;
-				map->y_u[1] = j;
-			}
+				get_p(map, i, j, 1);
 			point2 = size_points(map, map->y_d[0], map->y_d[1]);
 			if (point.y < point2.y)
-			{
-				map->y_d[0] = i;
-				map->y_d[1] = j;
-			}
+				get_p(map, i, j, 2);
 			j++;
 		}
 		i++;
@@ -58,14 +66,14 @@ void	calculate_true_center(t_map *map)
 	adjust_and_scale (map);
 }
 
-void	adjust_and_scale (t_map *map)
+void	adjust_and_scale(t_map *map)
 {
 	t_point	point;
 	t_point	point2;
 
 	point = size_points(map, map->y_d[0], map->y_d[1]);
 	point2 = size_points(map, map->y_u[0], map->y_u[1]);
-	map->scale = 200;
+	map->scale = 2000;
 	while ((point2.y * map->scale) - (point.y * map->scale) > 1040)
 		map->scale -= 0.2;
 	point = size_points(map, 0, 0);
@@ -80,5 +88,5 @@ void	adjust_and_scale (t_map *map)
 		while (((point.x * map->scale) + map->center_x) < 960)
 			map->center_x += 1;
 	else if ((point.x * map->scale) > 960)
-			map->center_x -= 1;
+		map->center_x -= 1;
 }
