@@ -15,6 +15,7 @@ static int	key_hook(int keycode, t_win *win)
 static int clouse(t_win *win)
 {
 	mlx_destroy_window(win->mlx, win->mlx_win);
+	system("leaks fdf");
 	exit(0);
 	return(0);
 }

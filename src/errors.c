@@ -1,9 +1,12 @@
 #include "../includes/graphic.h"
 
-void	execut_error (void)
+void	execut_error (int errornum)
 {
-	perror("Error");
-	exit(1);
+	char	*s;
+
+	s =strerror(errornum);
+	perror(s);
+	exit(errornum);
 }
   
 void	freeall(t_map *map)
@@ -11,7 +14,7 @@ void	freeall(t_map *map)
 	int	i;
 	int j;
 
-	i = map->x - 1;
+	i = map->x - 1;	
 	j = map->y - 1;
 	while (i >= 0)
 	{
@@ -22,4 +25,3 @@ void	freeall(t_map *map)
 	free(map->xy);
 	free(map->color);
 }
-

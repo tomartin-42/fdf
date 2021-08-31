@@ -6,8 +6,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <string.h>
 # include <time.h>
-//# include <mlx.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -64,7 +64,7 @@ typedef struct s_color{
 int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
-void	execut_error (void);
+void	execut_error (int errornum);
 void	freeall(t_map *map);
 
 void	dimension_map(t_map *map, int fd);

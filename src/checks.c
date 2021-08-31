@@ -5,12 +5,12 @@ int	check_correct_argc(int argc, char **argv)
 {
 	int	fd;
 	if (argc != 2)
-		execut_error();
+		execut_error(22);
 	if (ft_strlen(argv[1]) == 0)
-		execut_error(); 
+		execut_error(22); 
 	fd = open (argv[1], O_RDONLY );
 	if (fd < 1)
-		execut_error();
+		execut_error(2);
 	return (fd);
 }
 
@@ -31,10 +31,10 @@ static void	get_y(t_map *map, char *line, int *check)
 		*check = map->y;
 	else	
 		if (*check != map->y)
-			execut_error();
+			execut_error(8);
 }
 
-//check correct characters and call other functions
+//get the dimension of map. Need to size the matrix 
 t_map	check_fd_map(int fd)
 {
 	char	*line;
@@ -49,16 +49,26 @@ t_map	check_fd_map(int fd)
 		free(line);
 		map.x++;
 	}
+	if(ft_strlen (line) || line[0] != '\0')
+	{
+		get_y(&map, line, &check);
+		map.x++;
+	}
 	free(line);
 	dimension_map(&map, fd);
 	return (map);
 }
 
-//size matrix
+//size matrix and check if have a correct size. No 1x1, 
+//1xX, Xx1 ...
 void	dimension_map(t_map *map, int fd)
 {
 	int	i;
 	
+	if(map->x < 2 || map->y < 2)
+	{
+		execut_error(8);
+	}
 	i = 0;
 	map->xy = (int **)malloc((map->x)*sizeof(int*));
 	map->color = (int **)malloc((map->x)*sizeof(int*));
