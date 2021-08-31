@@ -6,12 +6,12 @@ int	check_correct_argc(int argc, char **argv)
 	int	fd;
 
 	if (argc != 2)
-		execut_error(22);
+		execut_error("Number arguments invalid\n", 22);
 	if (ft_strlen(argv[1]) == 0)
-		execut_error(22);
+		execut_error("Invalid argument\n", 22);
 	fd = open (argv[1], O_RDONLY);
 	if (fd < 1)
-		execut_error(2);
+		execut_error("Can not open fdf map file\n", 2);
 	return (fd);
 }
 
@@ -32,7 +32,7 @@ static void	get_y(t_map *map, char *line, int *check)
 		*check = map->y;
 	else
 		if (*check != map->y)
-			execut_error(8);
+			execut_error("Map format incorrect\n", 8);
 }
 
 //get the dimension of map. Need to size the matrix 
@@ -68,7 +68,7 @@ void	dimension_map(t_map *map, int fd)
 
 	if (map->x < 2 || map->y < 2)
 	{
-		execut_error(8);
+		execut_error("Dimension map incorrect\n", 8);
 	}
 	i = 0;
 	map->xy = (int **) malloc((map->x) * sizeof (int *));

@@ -70,7 +70,7 @@ typedef struct s_caux{
 int		check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
-void	execut_error(int errornum);
+void	execut_error(char *s, int errornum);
 void	freeall(t_map *map);
 
 void	dimension_map(t_map *map, int fd);

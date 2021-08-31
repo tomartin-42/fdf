@@ -1,8 +1,8 @@
 #include "../includes/graphic.h"
 
-void	execut_error(int errornum)
+void	execut_error(char *s, int errornum)
 {
-	printf("%s\n", strerror(errornum));
+	printf("%s\n", s);
 	exit(errornum);
 }
 
