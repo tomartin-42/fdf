@@ -62,20 +62,20 @@ void	print_line_low(t_data *data, t_point point, t_point point2)
 		line.ni = -1;
 		line.dy = -line.dy;
 	}
-	line.D = (2 * line.dy) - line.dx;
+	line.d = (2 * line.dy) - line.dx;
 	line.y = point.y;
 	line.x = point.x;
 	while (line.x < point2.x)
 	{
 		color(&point, &point2, &line);
 		my_mlx_pixel_put(data, (int)line.x, (int)line.y, line.color);
-		if (line.D > 0)
+		if (line.d > 0)
 		{
 			line.y = line.y + line.ni;
-			line.D = line.D + (2 * (line.dy - line.dx));
+			line.d = line.d + (2 * (line.dy - line.dx));
 		}
 		else
-			line.D = line.D + 2 * line.dy;
+			line.d = line.d + 2 * line.dy;
 		line.x++;
 	}
 }
@@ -90,20 +90,20 @@ void	print_line_high(t_data *data, t_point point, t_point point2)
 		line.ni = -1;
 		line.dx = -line.dx;
 	}
-	line.D = (2 * line.dx) - line.dy;
+	line.d = (2 * line.dx) - line.dy;
 	line.y = point.y;
 	line.x = point.x;
 	while (line.y < point2.y)
 	{
 		color(&point, &point2, &line);
 		my_mlx_pixel_put(data, (int)line.x, (int)line.y, line.color);
-		if (line.D > 0)
+		if (line.d > 0)
 		{
 			line.x = line.x + line.ni;
-			line.D = line.D + (2 * (line.dx - line.dy));
+			line.d = line.d + (2 * (line.dx - line.dy));
 		}
 		else
-			line.D = line.D + 2 * line.dx;
+			line.d = line.d + 2 * line.dx;
 		line.y++;
 	}
 }

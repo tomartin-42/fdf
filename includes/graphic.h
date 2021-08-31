@@ -12,35 +12,35 @@
 # include "mlx.h"
 # include "libft.h"
 
-typedef struct	s_win{
+typedef struct s_win{
 	void	*mlx;
 	void	*mlx_win;
 }	t_win;
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-} 	t_data;
+}	t_data;
 
 typedef struct s_map{
-	int	**xy;
-	int	x;
-	int	y;
+	int		**xy;
+	int		x;
+	int		y;
 	float	scale;
-	int	y_u[2];
-	int	y_d[2];
-	int	center_x;
-	int	center_y;
-	int	**color;
+	int		y_u[2];
+	int		y_d[2];
+	int		center_x;
+	int		center_y;
+	int		**color;
 }	t_map;
 
 typedef struct s_point{
 	float	x;
 	float	y;
-	int	color;
+	int		color;
 }	t_point;
 
 typedef struct s_line{
@@ -49,28 +49,28 @@ typedef struct s_line{
 	float	ni;
 	float	x;
 	float	y;
-	float	D;
+	float	d;
 	int		color;
 }	t_line;
 
 typedef struct s_color{
-	int			t;
-	int		r;
-	int		g;
-	int		b;
-	unsigned int color;
-} t_color;
+	int				t;
+	int				r;
+	int				g;
+	int				b;
+	unsigned int	color;
+}	t_color;
 
 typedef struct s_caux{
-	int base;
-	int len;
-	int ini;
+	int	base;
+	int	len;
+	int	ini;
 }	t_caux;
 
-int	check_correct_argc(int argc, char **argv);
+int		check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
-void	execut_error (int errornum);
+void	execut_error(int errornum);
 void	freeall(t_map *map);
 
 void	dimension_map(t_map *map, int fd);
@@ -86,7 +86,7 @@ void	adjust_and_scale(t_map *map);
 void	paint_point(t_map *map, t_data *data);
 void	paint_point_p(t_map *map, t_data *data);
 void	print_line_low(t_data *data, t_point point, t_point point2);
-void	print_line_high(t_data *data, t_point  point, t_point point2);
+void	print_line_high(t_data *data, t_point point, t_point point2);
 void	draw_line(t_data *data, t_point point, t_point point2);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

@@ -4,11 +4,12 @@
 int	check_correct_argc(int argc, char **argv)
 {
 	int	fd;
+
 	if (argc != 2)
 		execut_error(22);
 	if (ft_strlen(argv[1]) == 0)
-		execut_error(22); 
-	fd = open (argv[1], O_RDONLY );
+		execut_error(22);
+	fd = open (argv[1], O_RDONLY);
 	if (fd < 1)
 		execut_error(2);
 	return (fd);
@@ -23,13 +24,13 @@ static void	get_y(t_map *map, char *line, int *check)
 	map->y = 0;
 	while (i < ft_strlen(line))
 	{
-		if ((ft_isalnum(line[i])) && (ft_strchr(" ",line[i + 1])))
+		if ((ft_isalnum(line[i])) && (ft_strchr(" ", line[i + 1])))
 			map->y += 1;
 		i++;
 	}
 	if (*check == -1)
 		*check = map->y;
-	else	
+	else
 		if (*check != map->y)
 			execut_error(8);
 }
@@ -39,7 +40,7 @@ t_map	check_fd_map(int fd)
 {
 	char	*line;
 	t_map	map;
-	int	check;
+	int		check;
 
 	check = -1;
 	map.x = 0;
@@ -49,7 +50,7 @@ t_map	check_fd_map(int fd)
 		free(line);
 		map.x++;
 	}
-	if(ft_strlen (line) || line[0] != '\0')
+	if (ft_strlen(line) || line[0] != '\0')
 	{
 		get_y(&map, line, &check);
 		map.x++;
@@ -64,18 +65,18 @@ t_map	check_fd_map(int fd)
 void	dimension_map(t_map *map, int fd)
 {
 	int	i;
-	
-	if(map->x < 2 || map->y < 2)
+
+	if (map->x < 2 || map->y < 2)
 	{
 		execut_error(8);
 	}
 	i = 0;
-	map->xy = (int **)malloc((map->x)*sizeof(int*));
-	map->color = (int **)malloc((map->x)*sizeof(int*));
+	map->xy = (int **) malloc((map->x) * sizeof (int *));
+	map->color = (int **) malloc((map->x) * sizeof (int *));
 	while (i < map->x)
 	{
-		map->xy[i] = (int *)malloc((map->y)*sizeof(int));
-		map->color[i] = (int *)malloc((map->y)*sizeof(int));
+		map->xy[i] = (int *) malloc((map->y) * sizeof (int));
+		map->color[i] = (int *) malloc((map->y) * sizeof (int));
 		i++;
 	}
 	map->scale = 2;
