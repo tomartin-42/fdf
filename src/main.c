@@ -6,16 +6,18 @@ static int	key_hook(int keycode, t_win *win)
 	{
 		mlx_clear_window(win->mlx, win->mlx_win);
 		mlx_destroy_window(win->mlx, win->mlx_win);
-		exit(0);
+		system("leaks fdf");
+		exit (0);
 	}
-	return(0);
+	return (0);
 }
 
-static int clouse(t_win *win)
+static int	clouse(t_win *win)
 {
 	mlx_destroy_window(win->mlx, win->mlx_win);
-	exit(0);
-	return(0);
+	system("leaks fdf");
+	exit (0);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -34,9 +36,9 @@ int	main(int argc, char **argv)
 	mlx_key_hook(win.mlx_win, key_hook, &win);
 	mlx_hook(win.mlx_win, 17, 0, clouse, &win);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-		&img.line_length, &img.endian);
+			&img.line_length, &img.endian);
 	calculate_scale(&map);
-	paint_point(&map, &img); 
+	paint_point(&map, &img);
 	mlx_put_image_to_window(win.mlx, win.mlx_win, img.img, 0, 0);
 	mlx_loop(win.mlx);
 }

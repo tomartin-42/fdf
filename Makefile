@@ -13,7 +13,7 @@ MINLBX_DIR = ./minilibx/
 
 # Source files and object files
 SRC_FILES = main.c checks.c errors.c copy.c paint.c scale.c color.c \
-			pixelput.c
+			paint_utils.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 

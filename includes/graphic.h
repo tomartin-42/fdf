@@ -61,6 +61,12 @@ typedef struct s_color{
 	unsigned int color;
 } t_color;
 
+typedef struct s_caux{
+	int base;
+	int len;
+	int ini;
+}	t_caux;
+
 int	check_correct_argc(int argc, char **argv);
 t_map	check_fd_map(int fd);
 
@@ -78,11 +84,14 @@ void	calculate_true_center(t_map *map);
 void	adjust_and_scale(t_map *map);
 
 void	paint_point(t_map *map, t_data *data);
+void	paint_point_p(t_map *map, t_data *data);
 void	print_line_low(t_data *data, t_point point, t_point point2);
 void	print_line_high(t_data *data, t_point  point, t_point point2);
-t_point	calculate_points(t_map *map, int x, int y);
 void	draw_line(t_data *data, t_point point, t_point point2);
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	get_gradient(t_line *line, t_point point, t_point point2);
+t_point	calculate_points(t_map *map, int x, int y);
 
 void	color(t_point *point, t_point *point2, t_line *line);
 

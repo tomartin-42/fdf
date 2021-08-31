@@ -10,7 +10,7 @@ void	copy_to_map(t_map *map, char *argv)
 
 	i = 0;
 	fd = open (argv, O_RDONLY);
-	while (i < map->x) 
+	while (i < map->x)
 	{
 		get_next_line(fd, &line);
 		buff_map = ft_split (line, ' ');
@@ -18,7 +18,7 @@ void	copy_to_map(t_map *map, char *argv)
 		while (buff_map[j])
 		{
 			map->xy[i][j] = ft_atoi (buff_map[j]);
-			get_color(map, buff_map[j],i, j); 
+			get_color(map, buff_map[j], i, j);
 			free (buff_map[j]);
 			j++;
 		}
@@ -29,31 +29,30 @@ void	copy_to_map(t_map *map, char *argv)
 	close(fd);
 }
 
+//get color and copy in the struct
 void	get_color(t_map *map, char *str, int i, int j)
 {
-	int	base;
-	int	len;
-	int	ini;
+	t_caux	aux;
 
-	ini = 0;
+	aux.ini = 0;
 	map->color[i][j] = 0;
-	if(ft_strchr(str, ','))
+	if (ft_strchr(str, ','))
 	{	
-		while (str[ini] != ',' && ini < (int) ft_strlen(str))
-			ini++;
-		ini = ini + 2;
-		base = 1;
-		len = ft_strlen(str) - 1;
-		while (len > ini)
+		while (str[aux.ini] != ',' && aux.ini < (int) ft_strlen(str))
+			aux.ini++;
+		aux.ini = aux.ini + 2;
+		aux.base = 1;
+		aux.len = ft_strlen(str) - 1;
+		while (aux.len > aux.ini)
 		{
-			if (ft_isdigit(str[len]))
-				map->color[i][j] += (str[len] - 48) * base;
-			else if (str[len] >= 'A' && str[len] <= 'F')
-				map->color[i][j] += (str[len] - 55) * base;
-			else if (str[len] >= 'a' && str[len] <= 'f')
-				map->color[i][j] += (str[len] - 87) * base;
-			base *= 16;
-			len--;
+			if (ft_isdigit(str[aux.len]))
+				map->color[i][j] += (str[aux.len] - 48) * aux.base;
+			else if (str[aux.len] >= 'A' && str[aux.len] <= 'F')
+				map->color[i][j] += (str[aux.len] - 55) * aux.base;
+			else if (str[aux.len] >= 'a' && str[aux.len] <= 'f')
+				map->color[i][j] += (str[aux.len] - 87) * aux.base;
+			aux.base *= 16;
+			aux.len--;
 		}
 	}
 	else
