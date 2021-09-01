@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 21:00:26 by tommy             #+#    #+#             */
-/*   Updated: 2021/08/31 21:00:27 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/01 10:23:26 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,29 +137,3 @@ void	draw_line(t_data *data, t_point point, t_point point2)
 			print_line_high(data, point, point2);
 	}	
 }
-/*
-t_point	calculate_points(t_map *map, int x, int y)
-{
-	t_point	point;
-	float	z;
-
-	point.color = map->color[x][y];
-	z = (map->xy[x][y]) / 3;
-	point.x = (y - x) * cos (M_PI / 6) * map->scale;
-	point.y = ((x + y - z) * sin (M_PI / 6)) * map->scale;
-	point.x = point.x + map->center_x;
-	point.y = point.y + map->center_y;
-	return (point);
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if ((x > 0 && x < 1919) && (y > 0 && y < 1079))
-	{
-		dst = data->addr + ((y) * data->line_length
-			+ (x) * (data->bits_per_pixel / 8));
-		*(unsigned int*) dst = color;
-	}
-}*/
