@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 21:00:15 by tommy             #+#    #+#             */
-/*   Updated: 2021/08/31 21:00:16 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/01 08:09:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	key_hook(int keycode, t_win *win)
 	{
 		mlx_clear_window(win->mlx, win->mlx_win);
 		mlx_destroy_window(win->mlx, win->mlx_win);
-		system("leaks fdf");
 		exit (0);
 	}
 	return (0);
@@ -27,7 +26,6 @@ static int	key_hook(int keycode, t_win *win)
 static int	clouse(t_win *win)
 {
 	mlx_destroy_window(win->mlx, win->mlx_win);
-	system("leaks fdf");
 	exit (0);
 	return (0);
 }

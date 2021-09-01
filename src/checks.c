@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 20:59:43 by tommy             #+#    #+#             */
-/*   Updated: 2021/08/31 20:59:46 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/01 08:09:04 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ void	dimension_map(t_map *map, int fd)
 {
 	int	i;
 
-	if (map->x < 2 || map->y < 2)
-	{
+	if ((map->x < 2 || map->y < 2) || (map->x > 1000 || map->y > 1000))
 		execut_error("Dimension map incorrect\n", 8);
-	}
 	i = 0;
 	map->xy = (int **) malloc((map->x) * sizeof (int *));
 	map->color = (int **) malloc((map->x) * sizeof (int *));

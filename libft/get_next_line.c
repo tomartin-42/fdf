@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 18:05:42 by tomartin          #+#    #+#             */
-/*   Updated: 2021/08/08 18:31:44 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/01 08:05:26 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	ft_extract_line(char **buff, char **line)
 	return (answ);
 }
 
-int	get_next_line(int	fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	char		*read_f;
 	static char	*buff_r[FD_SETSIZE];

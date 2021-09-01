@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 21:00:32 by tommy             #+#    #+#             */
-/*   Updated: 2021/08/31 21:00:33 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/01 08:14:43 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	adjust_and_scale(t_map *map)
 	point = size_points(map, map->y_d[0], map->y_d[1]);
 	point2 = size_points(map, map->y_u[0], map->y_u[1]);
 	map->scale = 2000;
-	while ((point2.y * map->scale) - (point.y * map->scale) > 1040)
-		map->scale -= 0.2;
+	while ((point2.y * map->scale) - (point.y * map->scale) > 1060)
+		map->scale -= 0.5;
 	point = size_points(map, map->x - 1, 0);
 	point2 = size_points(map, 0, map->y - 1);
 	while ((point2.x * map->scale) - (point.x * map->scale) > 1910)
-		map->scale -= 0.2;
+		map->scale -= 0.5;
 	point = size_points(map, map->y_d[0], map->y_d[1]);
 	while ((point.y * map->scale) + map->center_y < 10)
 		map->center_y += 1;

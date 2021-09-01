@@ -6,11 +6,12 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 12:14:52 by tomartin          #+#    #+#             */
-/*   Updated: 2021/08/08 18:30:45 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/01 08:04:28 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static int	ft_checking(char a, char const *set)
 {
 	while (*set)
